@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELDROP Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f1a;--card:#1a1a2e;--card2:#16213e;
+  --green:#4caf50;--green-bg:rgba(76,175,80,.12);
+  --red:#f44336;--red-bg:rgba(244,67,54,.12);
+  --blue:#2196f3;--blue-bg:rgba(33,150,243,.12);
+  --amber:#ff9800;--amber-bg:rgba(255,152,0,.12);
+  --purple:#ab47bc;--purple-bg:rgba(171,71,188,.12);
+  --text:#e8e8e8;--text2:#a0a0b0;--text3:#6a6a7a;
+  --border:#2a2a3e;
+}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;padding:12px;max-width:480px;margin:0 auto}
+h1{font-size:18px;font-weight:600;text-align:center;padding:12px 0 4px}
+.date{text-align:center;color:var(--text2);font-size:13px;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.card{background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--border)}
+.card.full{grid-column:1/-1}
+.card-label{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.card-value{font-size:22px;font-weight:700}
+.card-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.card-value.green{color:var(--green)}.card-value.red{color:var(--red)}.card-value.blue{color:var(--blue)}.card-value.amber{color:var(--amber)}.card-value.purple{color:var(--purple)}
+.section{margin-bottom:16px}
+.section-title{font-size:14px;font-weight:600;margin-bottom:10px;padding-left:4px;display:flex;align-items:center;gap:6px}
+.section-title .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:var(--card2);color:var(--text2);font-weight:500;padding:10px 8px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+td{padding:10px 8px;border-top:1px solid var(--border);background:var(--card)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+tr.highlight td{background:rgba(76,175,80,.08)}
+tr.warning td{background:rgba(244,67,54,.08)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:600}
+.badge.green{background:var(--green-bg);color:var(--green)}
+.badge.red{background:var(--red-bg);color:var(--red)}
+.badge.amber{background:var(--amber-bg);color:var(--amber)}
+.badge.blue{background:var(--blue-bg);color:var(--blue)}
+.badge.purple{background:var(--purple-bg);color:var(--purple)}
+.funnel{display:flex;flex-direction:column;gap:8px;padding:4px 0}
+.funnel-row{display:flex;align-items:center;gap:10px}
+.funnel-bar-wrap{flex:1;height:28px;background:var(--card2);border-radius:6px;overflow:hidden;position:relative}
+.funnel-bar{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:11px;font-weight:600;color:#fff;min-width:30px;transition:width .8s ease}
+.funnel-label{width:90px;font-size:11px;color:var(--text2);flex-shrink:0}
+.funnel-val{width:50px;text-align:right;font-size:12px;font-weight:600;flex-shrink:0}
+.chart-container{background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--border)}
+canvas{max-height:200px}
+.alert{background:var(--card);border-radius:10px;padding:12px;border-left:3px solid var(--amber);margin-bottom:8px;font-size:12px;color:var(--text2);line-height:1.5}
+.alert b{color:var(--text);font-weight:500}
+.winner{background:linear-gradient(135deg,rgba(76,175,80,.1),rgba(33,150,243,.1));border:1px solid rgba(76,175,80,.25);border-radius:12px;padding:14px;margin-bottom:16px}
+.winner-title{font-size:12px;color:var(--green);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.winner-name{font-size:16px;font-weight:700;margin-bottom:2px}
+.winner-detail{font-size:12px;color:var(--text2)}
+.winner-roas{font-size:28px;font-weight:800;color:var(--green)}
+.transport{display:flex;flex-direction:column;gap:8px}
+.transport-row{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.transport-name{font-weight:600;font-size:13px}
+.transport-stats{display:flex;gap:16px;font-size:11px;color:var(--text2)}
+.transport-stat b{color:var(--text);font-weight:500}
+.loading{text-align:center;padding:40px;color:var(--text3)}
+.footer{text-align:center;padding:20px 0;font-size:11px;color:var(--text3)}
+</style>
+</head>
+<body>
+<h1>📊 VELDROP</h1>
+<p class="date" id="fecha">Cargando...</p>
+
+<div class="cards" id="summary-cards">
+  <div class="card"><div class="card-label">Gasto Meta (7d)</div><div class="card-value blue" id="c-gasto">—</div></div>
+  <div class="card"><div class="card-label">ROAS (7d)</div><div class="card-value green" id="c-roas">—</div></div>
+  <div class="card"><div class="card-label">Pedidos generados</div><div class="card-value amber" id="c-pedidos">—</div></div>
+  <div class="card"><div class="card-label">Tasa despacho</div><div class="card-value" id="c-tasa">—</div></div>
+  <div class="card"><div class="card-label">Saldo Dropi</div><div class="card-value purple" id="c-saldo">—</div></div>
+  <div class="card"><div class="card-label">Ticket promedio</div><div class="card-value" id="c-ticket">—</div></div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--blue)"></span>Embudo COD</div>
+  <div class="funnel" id="funnel"></div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--green)"></span>Anuncio ganador</div>
+  <div class="winner" id="winner"></div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--blue)"></span>Meta Ads</div>
+  <div class="table-wrap"><table id="meta-table"></table></div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--amber)"></span>Campañas (atribución UTM real)</div>
+  <div class="table-wrap"><table id="camp-table"></table></div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--purple)"></span>Top productos</div>
+  <div class="chart-container"><canvas id="products-chart"></canvas></div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--green)"></span>Transportadoras</div>
+  <div class="transport" id="transport"></div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="dot" style="background:var(--amber)"></span>Alertas</div>
+  <div id="alerts"></div>
+</div>
+
+<div class="footer">VELDROP Dashboard · Actualizado automáticamente</div>
+
+<script>
+const fmt = n => n == null ? 'N/D' : '$' + n.toLocaleString('es-CO');
+const pct = n => n == null ? 'N/D' : n.toFixed(2) + '%';
+
+async function init() {
+  let data;
+  try {
+    const r = await fetch('data.json?t=' + Date.now());
+    data = await r.json();
+  } catch(e) {
+    document.querySelector('.loading')?.remove();
+    return;
+  }
+
+  document.getElementById('fecha').textContent = data.fecha;
+
+  const m7 = data.meta.siete_dias;
+  document.getElementById('c-gasto').textContent = fmt(m7.gasto);
+  document.getElementById('c-roas').textContent = m7.roas ? m7.roas.toFixed(2) + 'x' : 'N/D';
+  document.getElementById('c-pedidos').textContent = data.embudo.generados;
+
+  const tasa = Math.round(data.embudo.despachados / data.embudo.generados * 100);
+  const tasaEl = document.getElementById('c-tasa');
+  tasaEl.textContent = tasa + '%';
+  tasaEl.className = 'card-value ' + (tasa >= 70 ? 'green' : tasa >= 50 ? 'amber' : 'red');
+
+  document.getElementById('c-saldo').textContent = fmt(data.saldo_dropi);
+
+  const ticket = Math.round(data.embudo.valor_generados / data.embudo.generados);
+  document.getElementById('c-ticket').textContent = fmt(ticket);
+
+  // Funnel
+  const maxVal = data.embudo.generados;
+  const funnelData = [
+    {label: 'Generados', val: data.embudo.generados, amount: data.embudo.valor_generados, color: 'var(--blue)'},
+    {label: 'Despachados', val: data.embudo.despachados, amount: data.embudo.valor_despachados, color: 'var(--green)'},
+    {label: 'Pend. despacho', val: data.embudo.pendientes_despacho, amount: data.embudo.valor_pendientes, color: 'var(--amber)'},
+    {label: 'Prepago conf.', val: data.embudo.prepago_confirmado, amount: data.embudo.valor_prepago, color: 'var(--purple)'}
+  ];
+  const funnelEl = document.getElementById('funnel');
+  funnelData.forEach(f => {
+    const w = Math.max(10, f.val / maxVal * 100);
+    funnelEl.innerHTML += `<div class="funnel-row">
+      <div class="funnel-label">${f.label}</div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${w}%;background:${f.color}">${f.val}</div></div>
+      <div class="funnel-val">${fmt(f.amount)}</div>
+    </div>`;
+  });
+
+  // Winner
+  const w = data.anuncio_ganador;
+  document.getElementById('winner').innerHTML = `
+    <div class="winner-title">🏆 Anuncio ganador</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="winner-name">${w.nombre}</div>
+        <div class="winner-detail">Ángulo: ${w.angulo} · ${w.conjunto}</div>
+        <div class="winner-detail">Gasto: ${fmt(w.gasto)} · CPM: ${fmt(w.cpm)}</div>
+      </div>
+      <div class="winner-roas">${w.roas}x</div>
+    </div>`;
+
+  // Meta table
+  const ma = data.meta;
+  document.getElementById('meta-table').innerHTML = `
+    <tr><th></th><th>Ayer</th><th>3 días</th><th>7 días</th></tr>
+    <tr><td>Gasto</td><td class="num">${fmt(ma.ayer.gasto)}</td><td class="num">${fmt(ma.tres_dias.gasto)}</td><td class="num">${fmt(ma.siete_dias.gasto)}</td></tr>
+    <tr><td>CPM</td><td class="num">${fmt(ma.ayer.cpm)}</td><td class="num">${fmt(ma.tres_dias.cpm)}</td><td class="num">${fmt(ma.siete_dias.cpm)}</td></tr>
+    <tr><td>CTR</td><td class="num">${pct(ma.ayer.ctr)}</td><td class="num">${pct(ma.tres_dias.ctr)}</td><td class="num">${pct(ma.siete_dias.ctr)}</td></tr>
+    <tr><td>Frecuencia</td><td class="num">${ma.ayer.frecuencia}</td><td class="num">${ma.tres_dias.frecuencia}</td><td class="num">${ma.siete_dias.frecuencia}</td></tr>
+    <tr><td>ROAS</td><td class="num">${ma.ayer.roas ? ma.ayer.roas+'x' : 'N/D'}</td><td class="num">${ma.tres_dias.roas}x</td><td class="num">${ma.siete_dias.roas}x</td></tr>`;
+
+  // Campaigns table
+  let campHtml = '<tr><th>Campaña</th><th>Gasto</th><th>Pedidos</th><th>Desp.</th><th>Tasa</th></tr>';
+  data.campanias.forEach(c => {
+    const cls = c.tasa_despacho >= 70 ? 'highlight' : c.tasa_despacho < 50 ? 'warning' : '';
+    const badge = c.estado === 'PAUSED' ? ' <span class="badge amber">pausada</span>' : ' <span class="badge green">activa</span>';
+    campHtml += `<tr class="${cls}">
+      <td>${c.nombre}${badge}</td>
+      <td class="num">${fmt(c.gasto)}</td>
+      <td class="num">${c.pedidos_shopify}</td>
+      <td class="num">${c.despachados}</td>
+      <td class="num"><span class="badge ${c.tasa_despacho>=70?'green':c.tasa_despacho>=50?'amber':'red'}">${c.tasa_despacho}%</span></td>
+    </tr>`;
+  });
+  document.getElementById('camp-table').innerHTML = campHtml;
+
+  // Products chart
+  new Chart(document.getElementById('products-chart'), {
+    type: 'bar',
+    data: {
+      labels: data.top_productos.map(p => p.nombre),
+      datasets: [{
+        label: 'Ventas (COP)',
+        data: data.top_productos.map(p => p.ventas),
+        backgroundColor: ['#4caf50','#2196f3','#ff9800','#ab47bc','#f44336'],
+        borderRadius: 6,
+        barThickness: 32
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {display: false},
+        tooltip: {callbacks: {label: ctx => fmt(ctx.raw)}}
+      },
+      scales: {
+        x: {grid:{color:'#2a2a3e'},ticks:{color:'#a0a0b0',callback: v=>fmt(v)}},
+        y: {grid:{display:false},ticks:{color:'#e8e8e8',font:{size:12}}}
+      }
+    }
+  });
+
+  // Transport
+  const trEl = document.getElementById('transport');
+  data.transportadoras.forEach(t => {
+    const color = t.efectividad >= 80 ? 'var(--green)' : t.efectividad > 0 ? 'var(--amber)' : 'var(--text3)';
+    trEl.innerHTML += `<div class="transport-row">
+      <div><div class="transport-name" style="color:${color}">${t.nombre}</div></div>
+      <div class="transport-stats">
+        <div>Efectividad: <b>${t.efectividad}%</b></div>
+        <div>Flete: <b>${fmt(t.flete_promedio)}</b></div>
+        <div>Entrega: <b>${t.tiempo_entrega}d</b></div>
+      </div>
+    </div>`;
+  });
+
+  // Alerts
+  const alertsEl = document.getElementById('alerts');
+  data.alertas.forEach(a => {
+    alertsEl.innerHTML += `<div class="alert">⚠️ ${a}</div>`;
+  });
+}
+
+init();
+</script>
+</body>
+</html>
