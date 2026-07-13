@@ -1,0 +1,45 @@
+{
+  "fecha": "13 jul 2026",
+  "meta": {
+    "ayer": {"gasto": 276257, "cpm": 18602, "ctr": 3.56, "frecuencia": 1.23, "roas": null, "impresiones": 14851, "clics": 528},
+    "tres_dias": {"gasto": 555265, "cpm": 19756, "ctr": 3.89, "frecuencia": 1.29, "roas": 1.88, "impresiones": 28106, "clics": 1092},
+    "siete_dias": {"gasto": 976826, "cpm": 22772, "ctr": 4.12, "frecuencia": 1.37, "roas": 2.57, "impresiones": 42895, "clics": 1769}
+  },
+  "embudo": {
+    "generados": 29,
+    "despachados": 22,
+    "pendientes_despacho": 7,
+    "prepago_confirmado": 5,
+    "valor_generados": 3092800,
+    "valor_despachados": 2505300,
+    "valor_pendientes": 587500,
+    "valor_prepago": 503200
+  },
+  "campanias": [
+    {"nombre": "CAMP VENT S-NMN 25/06", "id": "52559512181861", "estado": "PAUSED", "gasto": 570076, "roas_meta": 3.55, "pedidos_shopify": 21, "despachados": 20, "tasa_despacho": 95},
+    {"nombre": "CAMP VENT WELL 09/07", "id": "52567619618861", "estado": "PAUSED", "gasto": 166649, "roas_meta": 2.94, "pedidos_shopify": 8, "despachados": 2, "tasa_despacho": 25}
+  ],
+  "anuncio_ganador": {
+    "nombre": "CA 1 - C2",
+    "conjunto": "CA 1 AV M-ALIENTO",
+    "angulo": "Mal aliento",
+    "roas": 6.40,
+    "gasto": 64102,
+    "cpm": 11805
+  },
+  "top_productos": [
+    {"nombre": "NMN NAD+ Support", "pedidos": 22, "ventas": 3293000},
+    {"nombre": "WellFresh", "pedidos": 9, "ventas": 722000}
+  ],
+  "transportadoras": [
+    {"nombre": "ENVIA", "efectividad": 100, "flete_promedio": 16940, "tiempo_entrega": 1.3},
+    {"nombre": "INTERRAPIDISIMO", "efectividad": 0, "flete_promedio": 24145, "tiempo_entrega": 0},
+    {"nombre": "VELOCES", "efectividad": 0, "flete_promedio": 9950, "tiempo_entrega": 0}
+  ],
+  "saldo_dropi": 196707,
+  "alertas": [
+    "Campana S-NMN pausada con ROAS 3.55x - candidata a reactivar",
+    "WellFresh: tasa despacho 25% - problema de calidad de leads",
+    "CTR bajando: 4.12% (7d) a 3.56% (ayer)"
+  ]
+}
