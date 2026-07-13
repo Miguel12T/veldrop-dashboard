@@ -2,255 +2,278 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
 <title>VELDROP Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0f0f1a;--card:#1a1a2e;--card2:#16213e;
-  --green:#4caf50;--green-bg:rgba(76,175,80,.12);
-  --red:#f44336;--red-bg:rgba(244,67,54,.12);
-  --blue:#2196f3;--blue-bg:rgba(33,150,243,.12);
-  --amber:#ff9800;--amber-bg:rgba(255,152,0,.12);
-  --purple:#ab47bc;--purple-bg:rgba(171,71,188,.12);
-  --text:#e8e8e8;--text2:#a0a0b0;--text3:#6a6a7a;
-  --border:#2a2a3e;
-}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;padding:12px;max-width:480px;margin:0 auto}
-h1{font-size:18px;font-weight:600;text-align:center;padding:12px 0 4px}
-.date{text-align:center;color:var(--text2);font-size:13px;margin-bottom:16px}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.card{background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--border)}
-.card.full{grid-column:1/-1}
-.card-label{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.card-value{font-size:22px;font-weight:700}
-.card-sub{font-size:12px;color:var(--text2);margin-top:2px}
-.card-value.green{color:var(--green)}.card-value.red{color:var(--red)}.card-value.blue{color:var(--blue)}.card-value.amber{color:var(--amber)}.card-value.purple{color:var(--purple)}
-.section{margin-bottom:16px}
-.section-title{font-size:14px;font-weight:600;margin-bottom:10px;padding-left:4px;display:flex;align-items:center;gap:6px}
-.section-title .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
-.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{background:var(--card2);color:var(--text2);font-weight:500;padding:10px 8px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
-td{padding:10px 8px;border-top:1px solid var(--border);background:var(--card)}
-td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
-tr.highlight td{background:rgba(76,175,80,.08)}
-tr.warning td{background:rgba(244,67,54,.08)}
-.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:600}
-.badge.green{background:var(--green-bg);color:var(--green)}
-.badge.red{background:var(--red-bg);color:var(--red)}
-.badge.amber{background:var(--amber-bg);color:var(--amber)}
-.badge.blue{background:var(--blue-bg);color:var(--blue)}
-.badge.purple{background:var(--purple-bg);color:var(--purple)}
-.funnel{display:flex;flex-direction:column;gap:8px;padding:4px 0}
-.funnel-row{display:flex;align-items:center;gap:10px}
-.funnel-bar-wrap{flex:1;height:28px;background:var(--card2);border-radius:6px;overflow:hidden;position:relative}
-.funnel-bar{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:11px;font-weight:600;color:#fff;min-width:30px;transition:width .8s ease}
-.funnel-label{width:90px;font-size:11px;color:var(--text2);flex-shrink:0}
-.funnel-val{width:50px;text-align:right;font-size:12px;font-weight:600;flex-shrink:0}
-.chart-container{background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--border)}
-canvas{max-height:200px}
-.alert{background:var(--card);border-radius:10px;padding:12px;border-left:3px solid var(--amber);margin-bottom:8px;font-size:12px;color:var(--text2);line-height:1.5}
-.alert b{color:var(--text);font-weight:500}
-.winner{background:linear-gradient(135deg,rgba(76,175,80,.1),rgba(33,150,243,.1));border:1px solid rgba(76,175,80,.25);border-radius:12px;padding:14px;margin-bottom:16px}
-.winner-title{font-size:12px;color:var(--green);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
-.winner-name{font-size:16px;font-weight:700;margin-bottom:2px}
-.winner-detail{font-size:12px;color:var(--text2)}
+:root{--bg:#0c0c18;--card:#151528;--card2:#1a1a35;--card3:#1e1e40;--green:#22c55e;--green2:#16a34a;--green-bg:rgba(34,197,94,.1);--red:#ef4444;--red-bg:rgba(239,68,68,.1);--blue:#3b82f6;--blue-bg:rgba(59,130,246,.1);--amber:#f59e0b;--amber-bg:rgba(245,158,11,.1);--purple:#a855f7;--purple-bg:rgba(168,85,247,.1);--text:#f1f1f1;--text2:#9ca3af;--text3:#4b5563;--border:rgba(255,255,255,.06);--glow:rgba(59,130,246,.15)}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0 12px 24px;max-width:480px;margin:0 auto;-webkit-font-smoothing:antialiased}
+.header{text-align:center;padding:16px 0 6px;position:sticky;top:0;background:var(--bg);z-index:10}
+.header h1{font-size:20px;font-weight:700;letter-spacing:.5px}
+.header h1 span{color:var(--blue)}
+.updated{font-size:11px;color:var(--text3);margin-top:2px}
+.tabs{display:flex;gap:6px;margin:12px 0;overflow-x:auto;padding:2px 0}
+.tab{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;background:var(--card);color:var(--text2);border:1px solid var(--border);cursor:pointer;white-space:nowrap;transition:all .2s}
+.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.card{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--border);position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.card.c-green::after{background:var(--green)}.card.c-red::after{background:var(--red)}.card.c-blue::after{background:var(--blue)}.card.c-amber::after{background:var(--amber)}.card.c-purple::after{background:var(--purple)}
+.card-label{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.card-value{font-size:20px;font-weight:700}
+.card-change{font-size:11px;margin-top:3px;display:flex;align-items:center;gap:3px}
+.card-change.up{color:var(--green)}.card-change.down{color:var(--red)}.card-change.neutral{color:var(--text3)}
+.section{margin-bottom:14px}
+.section-title{font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.chart-box{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--border)}
+canvas{max-height:180px!important}
+.funnel{display:flex;flex-direction:column;gap:6px}
+.funnel-row{display:flex;align-items:center;gap:8px}
+.funnel-label{width:85px;font-size:11px;color:var(--text2);flex-shrink:0}
+.funnel-bar-wrap{flex:1;height:26px;background:var(--card2);border-radius:6px;overflow:hidden}
+.funnel-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:11px;font-weight:600;color:#fff;min-width:28px;transition:width .6s ease}
+.funnel-val{width:70px;text-align:right;font-size:11px;color:var(--text2);flex-shrink:0}
+.winner-box{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(59,130,246,.08));border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.winner-left .wl{font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.8px}
+.winner-left .wn{font-size:15px;font-weight:700;margin:2px 0}
+.winner-left .wd{font-size:11px;color:var(--text2)}
 .winner-roas{font-size:28px;font-weight:800;color:var(--green)}
-.transport{display:flex;flex-direction:column;gap:8px}
-.transport-row{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.transport-name{font-weight:600;font-size:13px}
-.transport-stats{display:flex;gap:16px;font-size:11px;color:var(--text2)}
-.transport-stat b{color:var(--text);font-weight:500}
-.loading{text-align:center;padding:40px;color:var(--text3)}
-.footer{text-align:center;padding:20px 0;font-size:11px;color:var(--text3)}
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{background:var(--card2);color:var(--text3);font-weight:500;padding:8px 6px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.3px}
+.tbl td{padding:8px 6px;border-top:1px solid var(--border);background:var(--card)}
+.tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+.tbl tr.good td{background:rgba(34,197,94,.05)}.tbl tr.bad td{background:rgba(239,68,68,.05)}
+.badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:600;letter-spacing:.3px}
+.badge.green{background:var(--green-bg);color:var(--green)}.badge.red{background:var(--red-bg);color:var(--red)}.badge.amber{background:var(--amber-bg);color:var(--amber)}.badge.blue{background:var(--blue-bg);color:var(--blue)}
+.camp-toggle{width:100%;text-align:left;background:none;border:none;color:var(--text);cursor:pointer;padding:0;font:inherit}
+.camp-detail{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.camp-detail.open{max-height:500px}
+.camp-detail-inner{padding:8px 0 4px 12px;border-left:2px solid var(--border)}
+.cd-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:11px;color:var(--text2)}
+.cd-row b{color:var(--text);font-weight:500}
+.transport-row{background:var(--card);border-radius:8px;padding:10px 12px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.transport-name{font-weight:600;font-size:12px}
+.transport-stats{display:flex;gap:12px;font-size:10px;color:var(--text2)}
+.transport-stats b{color:var(--text);font-weight:500}
+.alert-item{background:var(--card);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:11px;color:var(--text2);line-height:1.5;display:flex;gap:8px;align-items:flex-start}
+.alert-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.alert-item.reactivar{border-left:3px solid var(--green)}.alert-item.alerta{border-left:3px solid var(--red)}.alert-item.info{border-left:3px solid var(--blue)}
+.fin-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fin-item{background:var(--card);border-radius:8px;padding:10px;border:1px solid var(--border)}
+.fin-label{font-size:10px;color:var(--text3);text-transform:uppercase}
+.fin-value{font-size:16px;font-weight:700;margin-top:2px}
+.fin-input{margin-top:8px}
+.fin-input label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px}
+.fin-input input{width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--text);font-size:13px;outline:none}
+.fin-input input:focus{border-color:var(--blue)}
+.fin-result{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(168,85,247,.08));border:1px solid rgba(34,197,94,.15);border-radius:10px;padding:14px;margin-top:10px;text-align:center}
+.fin-result .fr-label{font-size:11px;color:var(--text2)}
+.fin-result .fr-value{font-size:24px;font-weight:800;margin-top:4px}
+.footer{text-align:center;padding:16px 0;font-size:10px;color:var(--text3)}
+.hidden{display:none}
 </style>
 </head>
 <body>
-<h1>📊 VELDROP</h1>
-<p class="date" id="fecha">Cargando...</p>
-
-<div class="cards" id="summary-cards">
-  <div class="card"><div class="card-label">Gasto Meta (7d)</div><div class="card-value blue" id="c-gasto">—</div></div>
-  <div class="card"><div class="card-label">ROAS (7d)</div><div class="card-value green" id="c-roas">—</div></div>
-  <div class="card"><div class="card-label">Pedidos generados</div><div class="card-value amber" id="c-pedidos">—</div></div>
-  <div class="card"><div class="card-label">Tasa despacho</div><div class="card-value" id="c-tasa">—</div></div>
-  <div class="card"><div class="card-label">Saldo Dropi</div><div class="card-value purple" id="c-saldo">—</div></div>
-  <div class="card"><div class="card-label">Ticket promedio</div><div class="card-value" id="c-ticket">—</div></div>
+<div class="header">
+  <h1>📊 <span>VELDROP</span></h1>
+  <div class="updated" id="updated"></div>
 </div>
 
-<div class="section">
-  <div class="section-title"><span class="dot" style="background:var(--blue)"></span>Embudo COD</div>
-  <div class="funnel" id="funnel"></div>
+<div class="tabs" id="tabs">
+  <div class="tab active" data-tab="resumen">Resumen</div>
+  <div class="tab" data-tab="meta">Meta Ads</div>
+  <div class="tab" data-tab="campanias">Campañas</div>
+  <div class="tab" data-tab="financiero">Financiero</div>
 </div>
 
-<div class="section">
-  <div class="section-title"><span class="dot" style="background:var(--green)"></span>Anuncio ganador</div>
-  <div class="winner" id="winner"></div>
+<div id="tab-resumen">
+  <div class="cards" id="summary"></div>
+  <div class="section">
+    <div class="section-title">Embudo COD (7 días)</div>
+    <div class="chart-box"><div class="funnel" id="funnel"></div></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Anuncio ganador</div>
+    <div class="winner-box" id="winner"></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Tendencia diaria</div>
+    <div class="chart-box"><canvas id="trend-chart"></canvas></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Top productos</div>
+    <div class="chart-box"><canvas id="products-chart"></canvas></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Alertas</div>
+    <div id="alerts"></div>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title"><span class="dot" style="background:var(--blue)"></span>Meta Ads</div>
-  <div class="table-wrap"><table id="meta-table"></table></div>
+<div id="tab-meta" class="hidden">
+  <div class="section">
+    <div class="section-title">Métricas por ventana</div>
+    <div class="chart-box"><div style="overflow-x:auto"><table class="tbl" id="meta-table"></table></div></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Gasto vs ROAS (7 días)</div>
+    <div class="chart-box"><canvas id="gasto-roas-chart"></canvas></div>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title"><span class="dot" style="background:var(--amber)"></span>Campañas (atribución UTM real)</div>
-  <div class="table-wrap"><table id="camp-table"></table></div>
+<div id="tab-campanias" class="hidden">
+  <div class="section">
+    <div class="section-title">Rendimiento por campaña</div>
+    <div id="camp-list"></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Transportadoras</div>
+    <div id="transport"></div>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title"><span class="dot" style="background:var(--purple)"></span>Top productos</div>
-  <div class="chart-container"><canvas id="products-chart"></canvas></div>
+<div id="tab-financiero" class="hidden">
+  <div class="section">
+    <div class="section-title">Resumen financiero (7 días)</div>
+    <div class="fin-grid" id="fin-grid"></div>
+    <div class="fin-input">
+      <label>Ingresa tu COGS promedio por producto (COP) para calcular margen:</label>
+      <input type="number" id="cogs-input" placeholder="Ej: 25000" oninput="calcMargin()">
+    </div>
+    <div class="fin-result hidden" id="fin-result">
+      <div class="fr-label">Ganancia estimada (7 días)</div>
+      <div class="fr-value" id="fr-ganancia"></div>
+      <div class="fr-label" style="margin-top:8px">Margen</div>
+      <div class="fr-value" id="fr-margen" style="font-size:18px"></div>
+    </div>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title"><span class="dot" style="background:var(--green)"></span>Transportadoras</div>
-  <div class="transport" id="transport"></div>
-</div>
-
-<div class="section">
-  <div class="section-title"><span class="dot" style="background:var(--amber)"></span>Alertas</div>
-  <div id="alerts"></div>
-</div>
-
-<div class="footer">VELDROP Dashboard · Actualizado automáticamente</div>
+<div class="footer">VELDROP · Actualizado automáticamente cada mañana</div>
 
 <script>
-const fmt = n => n == null ? 'N/D' : '$' + n.toLocaleString('es-CO');
-const pct = n => n == null ? 'N/D' : n.toFixed(2) + '%';
+let D;
+const fmt=n=>n==null?'N/D':'$'+n.toLocaleString('es-CO');
+const pct=n=>n==null?'N/D':n.toFixed(2)+'%';
 
-async function init() {
-  let data;
-  try {
-    const r = await fetch('data.json?t=' + Date.now());
-    data = await r.json();
-  } catch(e) {
-    document.querySelector('.loading')?.remove();
-    return;
-  }
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    ['resumen','meta','campanias','financiero'].forEach(id=>{
+      document.getElementById('tab-'+id).classList.toggle('hidden',id!==t.dataset.tab);
+    });
+  };
+});
 
-  document.getElementById('fecha').textContent = data.fecha;
+function change(current,prev){
+  if(!prev||!current)return{cls:'neutral',txt:''};
+  const diff=((current-prev)/prev*100).toFixed(0);
+  if(diff>0)return{cls:'up',txt:'▲ +'+diff+'% vs sem. ant.'};
+  if(diff<0)return{cls:'down',txt:'▼ '+diff+'% vs sem. ant.'};
+  return{cls:'neutral',txt:'= sin cambio'};
+}
 
-  const m7 = data.meta.siete_dias;
-  document.getElementById('c-gasto').textContent = fmt(m7.gasto);
-  document.getElementById('c-roas').textContent = m7.roas ? m7.roas.toFixed(2) + 'x' : 'N/D';
-  document.getElementById('c-pedidos').textContent = data.embudo.generados;
+async function init(){
+  const r=await fetch('data.json?t='+Date.now());
+  D=await r.json();
 
-  const tasa = Math.round(data.embudo.despachados / data.embudo.generados * 100);
-  const tasaEl = document.getElementById('c-tasa');
-  tasaEl.textContent = tasa + '%';
-  tasaEl.className = 'card-value ' + (tasa >= 70 ? 'green' : tasa >= 50 ? 'amber' : 'red');
+  document.getElementById('updated').textContent='Actualizado: '+D.ultima_actualizacion;
 
-  document.getElementById('c-saldo').textContent = fmt(data.saldo_dropi);
+  const m7=D.meta.siete_dias;const e=D.embudo;const sa=D.semana_anterior||{};
+  const tasa=Math.round(e.despachados/e.generados*100);
+  const cG=change(m7.gasto,sa.gasto);const cP=change(e.generados,sa.pedidos);const cR=change(m7.roas,sa.roas);
 
-  const ticket = Math.round(data.embudo.valor_generados / data.embudo.generados);
-  document.getElementById('c-ticket').textContent = fmt(ticket);
+  document.getElementById('summary').innerHTML=`
+    <div class="card c-blue"><div class="card-label">Gasto Meta 7d</div><div class="card-value">${fmt(m7.gasto)}</div><div class="card-change ${cG.cls}">${cG.txt}</div></div>
+    <div class="card c-green"><div class="card-label">ROAS 7d</div><div class="card-value">${m7.roas?m7.roas.toFixed(2)+'x':'N/D'}</div><div class="card-change ${cR.cls}">${cR.txt}</div></div>
+    <div class="card c-amber"><div class="card-label">Pedidos 7d</div><div class="card-value">${e.generados}</div><div class="card-change ${cP.cls}">${cP.txt}</div></div>
+    <div class="card ${tasa>=70?'c-green':tasa>=50?'c-amber':'c-red'}"><div class="card-label">Tasa despacho</div><div class="card-value">${tasa}%</div><div class="card-change neutral">${e.despachados} de ${e.generados}</div></div>
+    <div class="card c-purple"><div class="card-label">Saldo Dropi</div><div class="card-value">${fmt(D.saldo_dropi)}</div></div>
+    <div class="card"><div class="card-label">Ticket promedio</div><div class="card-value">${fmt(Math.round(e.valor_generados/e.generados))}</div></div>`;
 
-  // Funnel
-  const maxVal = data.embudo.generados;
-  const funnelData = [
-    {label: 'Generados', val: data.embudo.generados, amount: data.embudo.valor_generados, color: 'var(--blue)'},
-    {label: 'Despachados', val: data.embudo.despachados, amount: data.embudo.valor_despachados, color: 'var(--green)'},
-    {label: 'Pend. despacho', val: data.embudo.pendientes_despacho, amount: data.embudo.valor_pendientes, color: 'var(--amber)'},
-    {label: 'Prepago conf.', val: data.embudo.prepago_confirmado, amount: data.embudo.valor_prepago, color: 'var(--purple)'}
-  ];
-  const funnelEl = document.getElementById('funnel');
-  funnelData.forEach(f => {
-    const w = Math.max(10, f.val / maxVal * 100);
-    funnelEl.innerHTML += `<div class="funnel-row">
-      <div class="funnel-label">${f.label}</div>
-      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${w}%;background:${f.color}">${f.val}</div></div>
-      <div class="funnel-val">${fmt(f.amount)}</div>
-    </div>`;
-  });
+  const maxF=e.generados;
+  const fd=[{l:'Generados',v:e.generados,a:e.valor_generados,c:'var(--blue)'},{l:'Despachados',v:e.despachados,a:e.valor_despachados,c:'var(--green)'},{l:'Pend. despacho',v:e.pendientes_despacho,a:e.valor_pendientes,c:'var(--amber)'},{l:'Prepago conf.',v:e.prepago_confirmado,a:e.valor_prepago,c:'var(--purple)'}];
+  document.getElementById('funnel').innerHTML=fd.map(f=>`<div class="funnel-row"><div class="funnel-label">${f.l}</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${Math.max(8,f.v/maxF*100)}%;background:${f.c}">${f.v}</div></div><div class="funnel-val">${fmt(f.a)}</div></div>`).join('');
 
-  // Winner
-  const w = data.anuncio_ganador;
-  document.getElementById('winner').innerHTML = `
-    <div class="winner-title">🏆 Anuncio ganador</div>
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div class="winner-name">${w.nombre}</div>
-        <div class="winner-detail">Ángulo: ${w.angulo} · ${w.conjunto}</div>
-        <div class="winner-detail">Gasto: ${fmt(w.gasto)} · CPM: ${fmt(w.cpm)}</div>
-      </div>
-      <div class="winner-roas">${w.roas}x</div>
-    </div>`;
+  const w=D.anuncio_ganador;
+  document.getElementById('winner').innerHTML=`<div class="winner-left"><div class="wl">🏆 Ganador</div><div class="wn">${w.nombre}</div><div class="wd">Ángulo: ${w.angulo}</div><div class="wd">${w.conjunto}</div></div><div class="winner-roas">${w.roas}x</div>`;
+
+  // Trend chart
+  const td=D.tendencia_diaria;
+  new Chart(document.getElementById('trend-chart'),{type:'line',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.1)',fill:true,tension:.3,yAxisID:'y'},{label:'Pedidos',data:td.map(d=>d.pedidos),borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.1)',fill:false,tension:.3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10}}}}}});
+
+  // Products
+  new Chart(document.getElementById('products-chart'),{type:'bar',data:{labels:D.top_productos.map(p=>p.nombre),datasets:[{data:D.top_productos.map(p=>p.ventas),backgroundColor:['#22c55e','#3b82f6','#f59e0b','#a855f7'],borderRadius:6,barThickness:28}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10},callback:v=>fmt(v)}},y:{grid:{display:false},ticks:{color:'#f1f1f1',font:{size:11}}}}}});
+
+  // Alerts
+  document.getElementById('alerts').innerHTML=D.alertas.map(a=>`<div class="alert-item ${a.tipo}"><span class="alert-icon">${a.tipo==='reactivar'?'🟢':a.tipo==='alerta'?'🔴':'🔵'}</span><span>${a.texto}</span></div>`).join('');
 
   // Meta table
-  const ma = data.meta;
-  document.getElementById('meta-table').innerHTML = `
-    <tr><th></th><th>Ayer</th><th>3 días</th><th>7 días</th></tr>
-    <tr><td>Gasto</td><td class="num">${fmt(ma.ayer.gasto)}</td><td class="num">${fmt(ma.tres_dias.gasto)}</td><td class="num">${fmt(ma.siete_dias.gasto)}</td></tr>
-    <tr><td>CPM</td><td class="num">${fmt(ma.ayer.cpm)}</td><td class="num">${fmt(ma.tres_dias.cpm)}</td><td class="num">${fmt(ma.siete_dias.cpm)}</td></tr>
-    <tr><td>CTR</td><td class="num">${pct(ma.ayer.ctr)}</td><td class="num">${pct(ma.tres_dias.ctr)}</td><td class="num">${pct(ma.siete_dias.ctr)}</td></tr>
-    <tr><td>Frecuencia</td><td class="num">${ma.ayer.frecuencia}</td><td class="num">${ma.tres_dias.frecuencia}</td><td class="num">${ma.siete_dias.frecuencia}</td></tr>
-    <tr><td>ROAS</td><td class="num">${ma.ayer.roas ? ma.ayer.roas+'x' : 'N/D'}</td><td class="num">${ma.tres_dias.roas}x</td><td class="num">${ma.siete_dias.roas}x</td></tr>`;
+  const ma=D.meta;
+  document.getElementById('meta-table').innerHTML=`<tr><th></th><th>Ayer</th><th>3 días</th><th>7 días</th></tr>
+    <tr><td>Gasto</td><td class="n">${fmt(ma.ayer.gasto)}</td><td class="n">${fmt(ma.tres_dias.gasto)}</td><td class="n">${fmt(ma.siete_dias.gasto)}</td></tr>
+    <tr><td>CPM</td><td class="n">${fmt(ma.ayer.cpm)}</td><td class="n">${fmt(ma.tres_dias.cpm)}</td><td class="n">${fmt(ma.siete_dias.cpm)}</td></tr>
+    <tr><td>CTR</td><td class="n">${pct(ma.ayer.ctr)}</td><td class="n">${pct(ma.tres_dias.ctr)}</td><td class="n">${pct(ma.siete_dias.ctr)}</td></tr>
+    <tr><td>Frecuencia</td><td class="n">${ma.ayer.frecuencia}</td><td class="n">${ma.tres_dias.frecuencia}</td><td class="n">${ma.siete_dias.frecuencia}</td></tr>
+    <tr><td>ROAS</td><td class="n">${ma.ayer.roas?ma.ayer.roas+'x':'N/D'}</td><td class="n">${ma.tres_dias.roas}x</td><td class="n">${ma.siete_dias.roas}x</td></tr>`;
 
-  // Campaigns table
-  let campHtml = '<tr><th>Campaña</th><th>Gasto</th><th>Pedidos</th><th>Desp.</th><th>Tasa</th></tr>';
-  data.campanias.forEach(c => {
-    const cls = c.tasa_despacho >= 70 ? 'highlight' : c.tasa_despacho < 50 ? 'warning' : '';
-    const badge = c.estado === 'PAUSED' ? ' <span class="badge amber">pausada</span>' : ' <span class="badge green">activa</span>';
-    campHtml += `<tr class="${cls}">
-      <td>${c.nombre}${badge}</td>
-      <td class="num">${fmt(c.gasto)}</td>
-      <td class="num">${c.pedidos_shopify}</td>
-      <td class="num">${c.despachados}</td>
-      <td class="num"><span class="badge ${c.tasa_despacho>=70?'green':c.tasa_despacho>=50?'amber':'red'}">${c.tasa_despacho}%</span></td>
-    </tr>`;
-  });
-  document.getElementById('camp-table').innerHTML = campHtml;
+  // Gasto vs ROAS chart
+  new Chart(document.getElementById('gasto-roas-chart'),{type:'bar',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),backgroundColor:'rgba(59,130,246,.3)',borderColor:'#3b82f6',borderWidth:1,borderRadius:4,yAxisID:'y',order:2},{label:'ROAS',data:td.map(d=>d.roas),type:'line',borderColor:'#22c55e',backgroundColor:'transparent',tension:.3,yAxisID:'y1',order:1,pointRadius:4,pointBackgroundColor:'#22c55e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10},callback:v=>v?v+'x':''},min:0}}}});
 
-  // Products chart
-  new Chart(document.getElementById('products-chart'), {
-    type: 'bar',
-    data: {
-      labels: data.top_productos.map(p => p.nombre),
-      datasets: [{
-        label: 'Ventas (COP)',
-        data: data.top_productos.map(p => p.ventas),
-        backgroundColor: ['#4caf50','#2196f3','#ff9800','#ab47bc','#f44336'],
-        borderRadius: 6,
-        barThickness: 32
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {display: false},
-        tooltip: {callbacks: {label: ctx => fmt(ctx.raw)}}
-      },
-      scales: {
-        x: {grid:{color:'#2a2a3e'},ticks:{color:'#a0a0b0',callback: v=>fmt(v)}},
-        y: {grid:{display:false},ticks:{color:'#e8e8e8',font:{size:12}}}
-      }
-    }
+  // Campaigns with drilldown
+  const cl=document.getElementById('camp-list');
+  D.campanias.forEach((c,i)=>{
+    const tBadge=c.tasa_despacho>=70?'green':c.tasa_despacho>=50?'amber':'red';
+    const sBadge=c.estado==='ACTIVE'?'<span class="badge green">activa</span>':'<span class="badge amber">pausada</span>';
+    const hasConj=c.conjuntos&&c.conjuntos.length>0;
+    cl.innerHTML+=`<div class="chart-box" style="margin-bottom:8px">
+      <button class="camp-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><b>${c.nombre}</b> ${sBadge}<br><span style="font-size:11px;color:var(--text2)">Gasto: ${fmt(c.gasto)} · ROAS: ${c.roas_meta?c.roas_meta+'x':'N/D'} · CTR: ${c.ctr}%</span></div>
+          <div style="text-align:right"><span class="badge ${tBadge}">${c.tasa_despacho}% desp.</span><br><span style="font-size:11px;color:var(--text2)">${c.pedidos_shopify} ped. → ${c.despachados} desp.</span></div>
+        </div>
+      </button>
+      <div class="camp-detail${hasConj?'':' open'}">
+        <div class="camp-detail-inner">${hasConj?c.conjuntos.map(cj=>`<div class="cd-row"><span><b>${cj.nombre}</b> · CTR ${cj.ctr}%</span><span>ROAS <b style="color:${cj.roas>=2?'var(--green)':cj.roas>=1?'var(--amber)':'var(--red)'}">${cj.roas?cj.roas+'x':'N/D'}</b> · ${fmt(cj.gasto)}</span></div>`).join(''):'<div class="cd-row" style="color:var(--text3)">Sin datos suficientes aún</div>'}</div>
+      </div>
+    </div>`;
   });
 
   // Transport
-  const trEl = document.getElementById('transport');
-  data.transportadoras.forEach(t => {
-    const color = t.efectividad >= 80 ? 'var(--green)' : t.efectividad > 0 ? 'var(--amber)' : 'var(--text3)';
-    trEl.innerHTML += `<div class="transport-row">
-      <div><div class="transport-name" style="color:${color}">${t.nombre}</div></div>
-      <div class="transport-stats">
-        <div>Efectividad: <b>${t.efectividad}%</b></div>
-        <div>Flete: <b>${fmt(t.flete_promedio)}</b></div>
-        <div>Entrega: <b>${t.tiempo_entrega}d</b></div>
-      </div>
-    </div>`;
+  const tr=document.getElementById('transport');
+  D.transportadoras.forEach(t=>{
+    const color=t.efectividad>=80?'var(--green)':t.efectividad>0?'var(--amber)':'var(--text3)';
+    tr.innerHTML+=`<div class="transport-row"><div class="transport-name" style="color:${color}">${t.nombre}</div><div class="transport-stats"><div>Efect: <b>${t.efectividad}%</b></div><div>Flete: <b>${fmt(t.flete_promedio)}</b></div><div><b>${t.tiempo_entrega}d</b></div></div></div>`;
   });
 
-  // Alerts
-  const alertsEl = document.getElementById('alerts');
-  data.alertas.forEach(a => {
-    alertsEl.innerHTML += `<div class="alert">⚠️ ${a}</div>`;
-  });
+  // Financial
+  const f=D.financiero;
+  document.getElementById('fin-grid').innerHTML=`
+    <div class="fin-item"><div class="fin-label">Inversión Meta</div><div class="fin-value" style="color:var(--red)">${fmt(f.inversion_meta)}</div></div>
+    <div class="fin-item"><div class="fin-label">Valor despachado</div><div class="fin-value" style="color:var(--green)">${fmt(f.valor_despachado)}</div></div>
+    <div class="fin-item"><div class="fin-label">Prepago confirmado</div><div class="fin-value" style="color:var(--purple)">${fmt(f.prepago_confirmado)}</div></div>
+    <div class="fin-item"><div class="fin-label">Flete promedio</div><div class="fin-value">${fmt(f.flete_promedio)}</div></div>`;
+}
+
+function calcMargin(){
+  const cogs=parseFloat(document.getElementById('cogs-input').value);
+  if(!cogs||!D)return;
+  const f=D.financiero;const e=D.embudo;
+  const ingresoBruto=f.valor_despachado+f.prepago_confirmado;
+  const totalCogs=cogs*e.generados;
+  const totalFlete=f.flete_promedio*e.despachados;
+  const comisionDropi=f.valor_despachado*(f.comision_dropi_pct/100);
+  const comisionPasarela=f.prepago_confirmado*(f.comision_pasarela_pct/100);
+  const ganancia=ingresoBruto-totalCogs-totalFlete-comisionDropi-f.inversion_meta-comisionPasarela;
+  const margen=ingresoBruto>0?(ganancia/ingresoBruto*100).toFixed(1):0;
+  const el=document.getElementById('fin-result');
+  el.classList.remove('hidden');
+  document.getElementById('fr-ganancia').textContent=fmt(Math.round(ganancia));
+  document.getElementById('fr-ganancia').style.color=ganancia>=0?'var(--green)':'var(--red)';
+  document.getElementById('fr-margen').textContent=margen+'%';
+  document.getElementById('fr-margen').style.color=ganancia>=0?'var(--green)':'var(--red)';
 }
 
 init();
