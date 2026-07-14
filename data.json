@@ -1,39 +1,39 @@
 {
-  "fecha": "13 jul 2026",
-  "ultima_actualizacion": "13/07/2026 06:30am",
+  "fecha": "14 jul 2026",
+  "ultima_actualizacion": "14/07/2026 10:11am",
   "meta": {
     "ayer": {
-      "gasto": 276257,
-      "cpm": 18602,
-      "ctr": 3.56,
-      "frecuencia": 1.23,
+      "gasto": null,
+      "cpm": null,
+      "ctr": null,
+      "frecuencia": null,
       "roas": null,
-      "impresiones": 14851,
-      "clics": 528,
+      "impresiones": 0,
+      "clics": 0,
       "pedidos_pixel": 0,
       "cpa": null
     },
     "tres_dias": {
-      "gasto": 555265,
-      "cpm": 19756,
-      "ctr": 3.89,
-      "frecuencia": 1.29,
-      "roas": 1.88,
-      "impresiones": 28106,
-      "clics": 1092,
-      "pedidos_pixel": 6,
-      "cpa": 92544
+      "gasto": null,
+      "cpm": null,
+      "ctr": null,
+      "frecuencia": null,
+      "roas": null,
+      "impresiones": 0,
+      "clics": 0,
+      "pedidos_pixel": 0,
+      "cpa": null
     },
     "siete_dias": {
-      "gasto": 976826,
-      "cpm": 22772,
-      "ctr": 4.12,
-      "frecuencia": 1.37,
-      "roas": 2.57,
-      "impresiones": 42895,
-      "clics": 1769,
-      "pedidos_pixel": 29,
-      "cpa": 33683
+      "gasto": null,
+      "cpm": null,
+      "ctr": null,
+      "frecuencia": null,
+      "roas": null,
+      "impresiones": 0,
+      "clics": 0,
+      "pedidos_pixel": 0,
+      "cpa": null
     }
   },
   "tendencia_diaria": [
@@ -85,17 +85,24 @@
       "pedidos": 0,
       "roas": null,
       "ventas": 0
+    },
+    {
+      "dia": "Jul 13",
+      "gasto": null,
+      "pedidos": 0,
+      "roas": null,
+      "ventas": 0
     }
   ],
   "embudo": {
-    "generados": 29,
-    "despachados": 22,
+    "generados": 28,
+    "despachados": 21,
     "pendientes_despacho": 7,
-    "prepago_confirmado": 5,
-    "valor_generados": 3092800,
-    "valor_despachados": 2505300,
+    "prepago_confirmado": 7,
+    "valor_generados": 2958250,
+    "valor_despachados": 2370750,
     "valor_pendientes": 587500,
-    "valor_prepago": 503200
+    "valor_prepago": 671200
   },
   "campanias": [
     {
@@ -107,8 +114,8 @@
       "ctr": 5.64,
       "cpm": 29648,
       "frecuencia": 1.29,
-      "pedidos_shopify": 21,
-      "despachados": 20,
+      "pedidos_shopify": 19,
+      "despachados": 18,
       "tasa_despacho": 95,
       "cpa_real": 27146,
       "pct_publicidad": 22.4,
@@ -170,9 +177,9 @@
       "ctr": 1.97,
       "cpm": 13773,
       "frecuencia": 1.36,
-      "pedidos_shopify": 8,
-      "despachados": 2,
-      "tasa_despacho": 25,
+      "pedidos_shopify": 9,
+      "despachados": 3,
+      "tasa_despacho": 33,
       "cpa_real": 20831,
       "pct_publicidad": 23.1,
       "conjuntos": [
@@ -235,13 +242,13 @@
   "top_productos": [
     {
       "nombre": "NMN NAD+ Support",
-      "pedidos": 22,
-      "ventas": 3293000
+      "pedidos": 19,
+      "ventas": 2222750
     },
     {
       "nombre": "WellFresh",
       "pedidos": 9,
-      "ventas": 722000
+      "ventas": 735500
     }
   ],
   "transportadoras": [
@@ -265,9 +272,9 @@
     }
   ],
   "financiero": {
-    "inversion_meta": 976826,
-    "valor_despachado": 2505300,
-    "prepago_confirmado": 503200,
+    "inversion_meta": null,
+    "valor_despachado": 2370750,
+    "prepago_confirmado": 671200,
     "cogs_por_producto": null,
     "flete_promedio": 16940,
     "comision_dropi_pct": 3,
@@ -283,23 +290,27 @@
   "alertas": [
     {
       "tipo": "alerta",
-      "texto": "Clara Rodríguez: 3 pedidos idénticos activos (#1059-1061, $83.500 c/u) — verificar con cliente antes de despachar, riesgo de ~$34k en fletes perdidos"
+      "texto": "CUENTA META SIN ACCESO: cuenta 1989998621723495 en estado UNSETTLED, la API niega acceso. Ads y pedidos detenidos desde 12 jul (0 pedidos 3 dias). Regularizar saldo/pago YA."
+    },
+    {
+      "tipo": "alerta",
+      "texto": "Clara Rodriguez: 3 pedidos identicos activos (#1059-1061, 3.500 c/u en 3 min) - verificar con cliente antes de despachar, riesgo ~4k en fletes."
+    },
+    {
+      "tipo": "alerta",
+      "texto": "WellFresh: tasa despacho 33% (3 de 9) - bajo el 50%, revisar operacion de despacho."
     },
     {
       "tipo": "reactivar",
-      "texto": "Campaña S-NMN pausada con ROAS 3.55x y CPA $27.146 — reactivar conjunto C2 (CPA $21.573)"
+      "texto": "S-NMN pausada, ROAS 3.55x (ult. conocido) - reactivar C2 (ROAS 4.82) y C3 (5.55) una vez regularizada la cuenta."
     },
     {
       "tipo": "alerta",
-      "texto": "WellFresh: tasa despacho 25% — CPA real $20.831 pero solo 2 de 8 se despachan"
+      "texto": "Conjunto C-PERSONAL: ROAS 0.87x - perdiendo dinero, apagar."
     },
     {
       "tipo": "info",
-      "texto": "CTR bajando: 4.12% (7d) → 3.56% (ayer) — revisar creativos"
-    },
-    {
-      "tipo": "alerta",
-      "texto": "Conjunto C-PERSONAL: ROAS 0.87x, CPA $30.339 — perdiendo dinero"
+      "texto": "Metricas Meta del dashboard = ultimos valores conocidos 13/07; hoy sin acceso a la cuenta."
     }
   ]
 }
