@@ -168,7 +168,7 @@ canvas{max-height:180px!important}
 
 <div id="tab-campanias" class="hidden">
   <div class="section"><div class="section-title">Campañas (atribución UTM)</div><div id="camp-list"></div></div>
-  <div class="section"><div class="section-title">Transportadoras</div><div id="transport"></div></div>
+  <div class="section"><div class="section-title">Transportadoras <span style="font-weight:400;text-transform:none;font-size:10px">(snapshot Dropi — no filtra por fecha)</span></div><div id="transport"></div></div>
 </div>
 
 <div id="tab-financiero" class="hidden">
@@ -186,7 +186,7 @@ canvas{max-height:180px!important}
 <div class="footer">VELDROP · Datos actualizados automáticamente</div>
 
 <script>
-let D,charts={},calMonth,calYear,calStart=null,calEnd=null,selecting=false;
+let D,charts={},calMonth,calYear,calStart=null,calEnd=null,selecting=false,curFrom=null,curTo=null;
 const fmt=n=>n==null?'N/D':'$'+Math.round(n).toLocaleString('es-CO');
 const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const DAYS=['Do','Lu','Ma','Mi','Ju','Vi','Sa'];
@@ -293,6 +293,7 @@ function filterAndRender(from,to){
   if(!D)return;
   from.setHours(0,0,0,0);
   to.setHours(23,59,59,999);
+  curFrom=from;curTo=to;
   const td=D.tendencia_diaria.filter(d=>{
     const dt=d.fecha?new Date(d.fecha+'T12:00:00'):parseDay(d.dia);
     if(!dt)return true;
@@ -320,8 +321,14 @@ function renderAll(filteredTrend){
   const fPctPub=fGasto&&fVentas>0?(fGasto/fVentas*100):null;
   const fTicket=fPedidos>0?fVentas/fPedidos:null;
 
-  // Use full embudo data (can't split by day) but show filtered header metrics
-  const e=D.embudo;const sa=D.semana_anterior||{};
+  // Embudo computed from the filtered range
+  const fDesp=td.reduce((s,d)=>s+(d.despachados||0),0);
+  const fVDesp=td.reduce((s,d)=>s+(d.valor_despachados||0),0);
+  const fPrep=td.reduce((s,d)=>s+(d.prepago||0),0);
+  const fVPrep=td.reduce((s,d)=>s+(d.valor_prepago||0),0);
+  const e={generados:fPedidos,despachados:fDesp,pendientes_despacho:fPedidos-fDesp,prepago_confirmado:fPrep,
+           valor_generados:fVentas,valor_despachados:fVDesp,valor_pendientes:fVentas-fVDesp,valor_prepago:fVPrep};
+  const sa=D.semana_anterior||{};
   const tasa=e.generados?Math.round(e.despachados/e.generados*100):0;
   const label=isFiltered?`(${td.length}d)`:'(7d)';
 
@@ -360,9 +367,17 @@ function renderAll(filteredTrend){
   // Alerts
   document.getElementById('alerts').innerHTML=D.alertas.map(a=>`<div class="alert-item ${a.tipo}"><span style="font-size:14px">${a.tipo==='reactivar'?'🟢':a.tipo==='alerta'?'🔴':'🔵'}</span><span>${a.texto}</span></div>`).join('');
 
-  // Meta table
+  // Meta table: range summary first, then last-known snapshot
   const ma=D.meta;
-  document.getElementById('meta-table').innerHTML=`<tr><th></th><th>Ayer</th><th>3 días</th><th>7 días</th></tr>
+  const rangoRows=`<tr><th colspan="4">RANGO SELECCIONADO (${td.length} días)</th></tr>
+    <tr><td>Gasto Meta</td><td class="n" colspan="3">${fGasto!=null?fmt(fGasto)+(gastoParcial?' ⚠ '+diasConGasto+'/'+td.length+' días':''):'N/D — Meta sin acceso'}</td></tr>
+    <tr><td>Ventas Shopify</td><td class="n" colspan="3">${fmt(fVentas)}</td></tr>
+    <tr><td>Pedidos</td><td class="n" colspan="3">${fPedidos}</td></tr>
+    <tr><td>ROAS real</td><td class="n" colspan="3">${fRoas?fRoas.toFixed(2)+'x':'N/D'}</td></tr>
+    <tr><td>CPA real</td><td class="n" colspan="3">${fCpa?fmt(fCpa):'N/D'}</td></tr>
+    <tr><td>% Publicidad</td><td class="n" colspan="3">${fPctPub?fPctPub.toFixed(1)+'%':'N/D'}</td></tr>
+    <tr><th colspan="4">ÚLTIMA FOTO META (13/07 — ayer/3d/7d)</th></tr>`;
+  document.getElementById('meta-table').innerHTML=rangoRows+`<tr><th></th><th>Ayer</th><th>3 días</th><th>7 días</th></tr>
     <tr><td>Gasto</td><td class="n">${fmt(ma.ayer.gasto)}</td><td class="n">${fmt(ma.tres_dias.gasto)}</td><td class="n">${fmt(ma.siete_dias.gasto)}</td></tr>
     <tr><td>CPM</td><td class="n">${fmt(ma.ayer.cpm)}</td><td class="n">${fmt(ma.tres_dias.cpm)}</td><td class="n">${fmt(ma.siete_dias.cpm)}</td></tr>
     <tr><td>CTR</td><td class="n">${ma.ayer.ctr}%</td><td class="n">${ma.tres_dias.ctr}%</td><td class="n">${ma.siete_dias.ctr}%</td></tr>
@@ -375,16 +390,33 @@ function renderAll(filteredTrend){
   if(charts.gastoRoas)charts.gastoRoas.destroy();
   charts.gastoRoas=new Chart(document.getElementById('gasto-roas-chart'),{type:'bar',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),backgroundColor:'rgba(59,130,246,.3)',borderColor:'#3b82f6',borderWidth:1,borderRadius:4,yAxisID:'y',order:2},{label:'ROAS',data:td.map(d=>d.roas),type:'line',borderColor:'#22c55e',tension:.3,yAxisID:'y1',order:1,pointRadius:4,pointBackgroundColor:'#22c55e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10},callback:v=>v?v+'x':''},min:0}}}});
 
-  // Campaigns
+  // Campaigns: range-filtered from campanias_diario, merged with static info
   const cl=document.getElementById('camp-list');cl.innerHTML='';
+  const rangeAgg={};
+  (D.campanias_diario||[]).forEach(cd=>{
+    const agg={pedidos:0,ventas:0,despachados:0,prepago:0};
+    cd.dias.forEach(day=>{
+      const dt=new Date(day.fecha+'T12:00:00');
+      if(curFrom&&curTo&&(dt<curFrom||dt>curTo))return;
+      agg.pedidos+=day.pedidos;agg.ventas+=day.ventas;agg.despachados+=day.despachados;agg.prepago+=day.prepago;
+    });
+    rangeAgg[cd.id]=agg;
+  });
   D.campanias.forEach(c=>{
+    const ra=rangeAgg[c.id]||{pedidos:0,ventas:0,despachados:0,prepago:0};
+    if(ra.pedidos===0&&curFrom&&curTo){
+      // campaign had no orders in range: show compact row
+      cl.innerHTML+=`<div class="chart-box" style="margin-bottom:8px;opacity:.5"><b style="font-size:12px">${c.nombre}</b> <span style="font-size:11px;color:var(--text3)">— sin pedidos en este rango</span></div>`;
+      return;
+    }
+    c={...c,pedidos_shopify:ra.pedidos,despachados:ra.despachados,tasa_despacho:ra.pedidos?Math.round(ra.despachados/ra.pedidos*100):0,ventas_rango:ra.ventas};
     const tB=c.tasa_despacho>=70?'green':c.tasa_despacho>=50?'amber':'red';
     const sB=c.estado==='ACTIVE'?'<span class="badge green">activa</span>':'<span class="badge amber">pausada</span>';
     const hc=c.conjuntos&&c.conjuntos.length>0;
     cl.innerHTML+=`<div class="chart-box" style="margin-bottom:8px">
       <button class="camp-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><b>${c.nombre}</b> ${sB}<br><span style="font-size:11px;color:var(--text2)">Gasto: ${fmt(c.gasto)} · ROAS: ${c.roas_meta?c.roas_meta+'x':'N/D'}</span><br><span style="font-size:11px;color:var(--text2)">CPA: ${c.cpa_real?fmt(c.cpa_real):'N/D'} · %Pub: ${c.pct_publicidad?c.pct_publicidad+'%':'N/D'}</span>${c.historico?`<br><span style="font-size:10px;color:var(--text3)">Histórico: ${c.historico.pedidos_total} ped · ${fmt(c.historico.ventas_total)} · ${c.historico.tasa_despacho_total}% desp. · desde ${c.historico.activa_desde}</span>`:''}</div>
+          <div><b>${c.nombre}</b> ${sB}<br><span style="font-size:11px;color:var(--text2)">Rango: ${c.pedidos_shopify} ped · ${fmt(c.ventas_rango||0)}</span><br><span style="font-size:11px;color:var(--text3)">Últ. Meta: gasto ${fmt(c.gasto)} · ROAS ${c.roas_meta?c.roas_meta+'x':'N/D'}</span><br><span style="font-size:11px;color:var(--text2)">CPA: ${c.cpa_real?fmt(c.cpa_real):'N/D'} · %Pub: ${c.pct_publicidad?c.pct_publicidad+'%':'N/D'}</span>${c.historico?`<br><span style="font-size:10px;color:var(--text3)">Histórico: ${c.historico.pedidos_total} ped · ${fmt(c.historico.ventas_total)} · ${c.historico.tasa_despacho_total}% desp. · desde ${c.historico.activa_desde}</span>`:''}</div>
           <div style="text-align:right"><span class="badge ${tB}">${c.tasa_despacho}%</span><br><span style="font-size:11px;color:var(--text2)">${c.pedidos_shopify}→${c.despachados}</span></div>
         </div>
       </button>
@@ -404,21 +436,24 @@ function renderAll(filteredTrend){
     tr.innerHTML+=`<div class="transport-row"><div class="transport-name" style="color:${color}">${t.nombre}</div><div class="transport-stats"><div>Efect: <b>${t.efectividad}%</b></div><div>Flete: <b>${fmt(t.flete_promedio)}</b></div><div><b>${t.tiempo_entrega}d</b></div></div></div>`;
   });
 
-  // Financial
+  // Financial: computed from the filtered range
   const f=D.financiero;
+  window._finRange={inversion:fGasto,valor_despachado:fVDesp,prepago:fVPrep,generados:fPedidos,despachados:fDesp};
   document.getElementById('fin-grid').innerHTML=`
-    <div class="fin-item"><div class="fin-label">Inversión Meta</div><div class="fin-value" style="color:var(--red)">${fmt(f.inversion_meta)}</div></div>
-    <div class="fin-item"><div class="fin-label">Valor despachado</div><div class="fin-value" style="color:var(--green)">${fmt(f.valor_despachado)}</div></div>
-    <div class="fin-item"><div class="fin-label">Prepago conf.</div><div class="fin-value" style="color:var(--purple)">${fmt(f.prepago_confirmado)}</div></div>
+    <div class="fin-item"><div class="fin-label">Inversión Meta (rango)</div><div class="fin-value" style="color:var(--red)">${fGasto!=null?fmt(fGasto):'N/D'}</div></div>
+    <div class="fin-item"><div class="fin-label">Valor despachado (rango)</div><div class="fin-value" style="color:var(--green)">${fmt(fVDesp)}</div></div>
+    <div class="fin-item"><div class="fin-label">Prepago conf. (rango)</div><div class="fin-value" style="color:var(--purple)">${fmt(fVPrep)}</div></div>
     <div class="fin-item"><div class="fin-label">Flete promedio</div><div class="fin-value">${fmt(f.flete_promedio)}</div></div>`;
+  if(document.getElementById('cogs-input').value)calcMargin();
 }
 
 function calcMargin(){
   const cogs=parseFloat(document.getElementById('cogs-input').value);
   if(!cogs||!D)return;
-  const f=D.financiero,e=D.embudo;
-  const ingreso=f.valor_despachado+f.prepago_confirmado;
-  const ganancia=ingreso-(cogs*e.generados)-(f.flete_promedio*e.despachados)-(f.valor_despachado*f.comision_dropi_pct/100)-f.inversion_meta-(f.prepago_confirmado*f.comision_pasarela_pct/100);
+  const f=D.financiero,r=window._finRange||{};
+  const inv=r.inversion||0;
+  const ingreso=(r.valor_despachado||0)+(r.prepago||0);
+  const ganancia=ingreso-(cogs*(r.generados||0))-(f.flete_promedio*(r.despachados||0))-((r.valor_despachado||0)*f.comision_dropi_pct/100)-inv-((r.prepago||0)*f.comision_pasarela_pct/100);
   const margen=ingreso>0?(ganancia/ingreso*100).toFixed(1):0;
   document.getElementById('fin-result').classList.remove('hidden');
   const g=document.getElementById('fr-ganancia');g.textContent=fmt(ganancia);g.style.color=ganancia>=0?'var(--green)':'var(--red)';
@@ -429,7 +464,7 @@ async function init(){
   const r=await fetch('data.json?t='+Date.now());
   D=await r.json();
   document.getElementById('updated').textContent='Actualizado: '+D.ultima_actualizacion;
-  renderAll();
+  applyRange('7d');
 }
 init();
 </script>
