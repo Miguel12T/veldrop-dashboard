@@ -1,108 +1,272 @@
 {
-  "fecha": "14 jul 2026",
-  "ultima_actualizacion": "14/07/2026 10:11am",
+  "fecha": "13 jul 2026",
+  "ultima_actualizacion": "14/07/2026 (historico jun-jul cargado)",
   "meta": {
     "ayer": {
-      "gasto": null,
-      "cpm": null,
-      "ctr": null,
-      "frecuencia": null,
+      "gasto": 276257,
+      "cpm": 18602,
+      "ctr": 3.56,
+      "frecuencia": 1.23,
       "roas": null,
-      "impresiones": 0,
-      "clics": 0,
+      "impresiones": 14851,
+      "clics": 528,
       "pedidos_pixel": 0,
       "cpa": null
     },
     "tres_dias": {
-      "gasto": null,
-      "cpm": null,
-      "ctr": null,
-      "frecuencia": null,
-      "roas": null,
-      "impresiones": 0,
-      "clics": 0,
-      "pedidos_pixel": 0,
-      "cpa": null
+      "gasto": 555265,
+      "cpm": 19756,
+      "ctr": 3.89,
+      "frecuencia": 1.29,
+      "roas": 1.88,
+      "impresiones": 28106,
+      "clics": 1092,
+      "pedidos_pixel": 6,
+      "cpa": 92544
     },
     "siete_dias": {
-      "gasto": null,
-      "cpm": null,
-      "ctr": null,
-      "frecuencia": null,
-      "roas": null,
-      "impresiones": 0,
-      "clics": 0,
-      "pedidos_pixel": 0,
-      "cpa": null
+      "gasto": 976826,
+      "cpm": 22772,
+      "ctr": 4.12,
+      "frecuencia": 1.37,
+      "roas": 2.57,
+      "impresiones": 42895,
+      "clics": 1769,
+      "pedidos_pixel": 29,
+      "cpa": 33683
     }
   },
   "tendencia_diaria": [
     {
+      "dia": "Jun 6",
+      "fecha": "2026-06-06",
+      "gasto": null,
+      "pedidos": 1,
+      "ventas": 96900,
+      "despachados": 0,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 22",
+      "fecha": "2026-06-22",
+      "gasto": null,
+      "pedidos": 2,
+      "ventas": 349000,
+      "despachados": 2,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 23",
+      "fecha": "2026-06-23",
+      "gasto": null,
+      "pedidos": 1,
+      "ventas": 150000,
+      "despachados": 1,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 25",
+      "fecha": "2026-06-25",
+      "gasto": null,
+      "pedidos": 1,
+      "ventas": 110000,
+      "despachados": 0,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 26",
+      "fecha": "2026-06-26",
+      "gasto": null,
+      "pedidos": 5,
+      "ventas": 664000,
+      "despachados": 4,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 27",
+      "fecha": "2026-06-27",
+      "gasto": null,
+      "pedidos": 5,
+      "ventas": 579000,
+      "despachados": 4,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 28",
+      "fecha": "2026-06-28",
+      "gasto": null,
+      "pedidos": 1,
+      "ventas": 125000,
+      "despachados": 1,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 30",
+      "fecha": "2026-06-30",
+      "gasto": null,
+      "pedidos": 1,
+      "ventas": 125000,
+      "despachados": 1,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 1",
+      "fecha": "2026-07-01",
+      "gasto": null,
+      "pedidos": 1,
+      "ventas": 79000,
+      "despachados": 1,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 2",
+      "fecha": "2026-07-02",
+      "gasto": null,
+      "pedidos": 4,
+      "ventas": 408000,
+      "despachados": 1,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 3",
+      "fecha": "2026-07-03",
+      "gasto": null,
+      "pedidos": 3,
+      "ventas": 357000,
+      "despachados": 3,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 4",
+      "fecha": "2026-07-04",
+      "gasto": null,
+      "pedidos": 4,
+      "ventas": 456000,
+      "despachados": 4,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 5",
+      "fecha": "2026-07-05",
+      "gasto": null,
+      "pedidos": 1,
+      "ventas": 99000,
+      "despachados": 0,
+      "prepago": 0,
+      "roas": null
+    },
+    {
       "dia": "Jul 6",
+      "fecha": "2026-07-06",
       "gasto": 145000,
       "pedidos": 2,
-      "roas": 2.1,
-      "ventas": 304500
+      "ventas": 218000,
+      "despachados": 2,
+      "prepago": 0,
+      "roas": 1.5
     },
     {
       "dia": "Jul 7",
+      "fecha": "2026-07-07",
       "gasto": 162000,
       "pedidos": 6,
-      "roas": 3.2,
-      "ventas": 518400
+      "ventas": 598650,
+      "despachados": 6,
+      "prepago": 2,
+      "roas": 3.7
     },
     {
       "dia": "Jul 8",
+      "fecha": "2026-07-08",
       "gasto": 148000,
-      "pedidos": 3,
-      "roas": 1.9,
-      "ventas": 281200
+      "pedidos": 4,
+      "ventas": 511550,
+      "despachados": 3,
+      "prepago": 1,
+      "roas": 3.46
     },
     {
       "dia": "Jul 9",
+      "fecha": "2026-07-09",
       "gasto": 155000,
       "pedidos": 4,
-      "roas": 2.8,
-      "ventas": 434000
+      "ventas": 429550,
+      "despachados": 4,
+      "prepago": 2,
+      "roas": 2.77
     },
     {
       "dia": "Jul 10",
+      "fecha": "2026-07-10",
       "gasto": 138000,
-      "pedidos": 4,
-      "roas": 3.1,
-      "ventas": 427800
+      "pedidos": 7,
+      "ventas": 807550,
+      "despachados": 5,
+      "prepago": 1,
+      "roas": 5.85
     },
     {
       "dia": "Jul 11",
+      "fecha": "2026-07-11",
       "gasto": 152000,
-      "pedidos": 5,
-      "roas": 2.4,
-      "ventas": 364800
+      "pedidos": 8,
+      "ventas": 695500,
+      "despachados": 4,
+      "prepago": 1,
+      "roas": 4.58
     },
     {
       "dia": "Jul 12",
+      "fecha": "2026-07-12",
       "gasto": 276257,
       "pedidos": 0,
-      "roas": null,
-      "ventas": 0
+      "ventas": 0,
+      "despachados": 0,
+      "prepago": 0,
+      "roas": null
     },
     {
       "dia": "Jul 13",
+      "fecha": "2026-07-13",
       "gasto": null,
       "pedidos": 0,
-      "roas": null,
-      "ventas": 0
+      "ventas": 0,
+      "despachados": 0,
+      "prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 14",
+      "fecha": "2026-07-14",
+      "gasto": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "prepago": 0,
+      "roas": null
     }
   ],
   "embudo": {
-    "generados": 28,
-    "despachados": 21,
+    "generados": 29,
+    "despachados": 22,
     "pendientes_despacho": 7,
-    "prepago_confirmado": 7,
-    "valor_generados": 2958250,
-    "valor_despachados": 2370750,
+    "prepago_confirmado": 5,
+    "valor_generados": 3092800,
+    "valor_despachados": 2505300,
     "valor_pendientes": 587500,
-    "valor_prepago": 671200
+    "valor_prepago": 503200
   },
   "campanias": [
     {
@@ -114,8 +278,8 @@
       "ctr": 5.64,
       "cpm": 29648,
       "frecuencia": 1.29,
-      "pedidos_shopify": 19,
-      "despachados": 18,
+      "pedidos_shopify": 21,
+      "despachados": 20,
       "tasa_despacho": 95,
       "cpa_real": 27146,
       "pct_publicidad": 22.4,
@@ -166,7 +330,16 @@
           "cpa": 32933
         }
       ],
-      "anuncio_ganador": null
+      "anuncio_ganador": null,
+      "historico": {
+        "pedidos_total": 44,
+        "ventas_total": 5053800,
+        "despachados_total": 39,
+        "tasa_despacho_total": 89,
+        "prepago_total": 6,
+        "activa_desde": "2026-06-26",
+        "ultimo_pedido": "2026-07-11"
+      }
     },
     {
       "nombre": "CAMP VENT WELL 09/07",
@@ -177,9 +350,9 @@
       "ctr": 1.97,
       "cpm": 13773,
       "frecuencia": 1.36,
-      "pedidos_shopify": 9,
-      "despachados": 3,
-      "tasa_despacho": 33,
+      "pedidos_shopify": 8,
+      "despachados": 2,
+      "tasa_despacho": 25,
       "cpa_real": 20831,
       "pct_publicidad": 23.1,
       "conjuntos": [
@@ -208,6 +381,15 @@
         "roas": 6.4,
         "gasto": 64102,
         "ctr": 2.08
+      },
+      "historico": {
+        "pedidos_total": 9,
+        "ventas_total": 735500,
+        "despachados_total": 3,
+        "tasa_despacho_total": 33,
+        "prepago_total": 1,
+        "activa_desde": "2026-07-10",
+        "ultimo_pedido": "2026-07-11"
       }
     },
     {
@@ -226,6 +408,32 @@
       "pct_publicidad": null,
       "conjuntos": [],
       "anuncio_ganador": null
+    },
+    {
+      "nombre": "CAMP JUNIO (producto anterior)",
+      "id": "52554205436661",
+      "estado": "FINALIZADA",
+      "gasto": null,
+      "roas_meta": null,
+      "ctr": null,
+      "cpm": null,
+      "frecuencia": null,
+      "pedidos_shopify": 6,
+      "despachados": 4,
+      "tasa_despacho": 67,
+      "cpa_real": null,
+      "pct_publicidad": null,
+      "conjuntos": [],
+      "anuncio_ganador": null,
+      "historico": {
+        "pedidos_total": 6,
+        "ventas_total": 873500,
+        "despachados_total": 4,
+        "tasa_despacho_total": 67,
+        "prepago_total": 0,
+        "activa_desde": "2026-06-22",
+        "ultimo_pedido": "2026-06-26"
+      }
     }
   ],
   "anuncio_ganador": {
@@ -242,13 +450,13 @@
   "top_productos": [
     {
       "nombre": "NMN NAD+ Support",
-      "pedidos": 19,
-      "ventas": 2222750
+      "pedidos": 22,
+      "ventas": 3293000
     },
     {
       "nombre": "WellFresh",
       "pedidos": 9,
-      "ventas": 735500
+      "ventas": 722000
     }
   ],
   "transportadoras": [
@@ -272,9 +480,9 @@
     }
   ],
   "financiero": {
-    "inversion_meta": null,
-    "valor_despachado": 2370750,
-    "prepago_confirmado": 671200,
+    "inversion_meta": 976826,
+    "valor_despachado": 2505300,
+    "prepago_confirmado": 503200,
     "cogs_por_producto": null,
     "flete_promedio": 16940,
     "comision_dropi_pct": 3,
@@ -290,27 +498,23 @@
   "alertas": [
     {
       "tipo": "alerta",
-      "texto": "CUENTA META SIN ACCESO: cuenta 1989998621723495 en estado UNSETTLED, la API niega acceso. Ads y pedidos detenidos desde 12 jul (0 pedidos 3 dias). Regularizar saldo/pago YA."
-    },
-    {
-      "tipo": "alerta",
-      "texto": "Clara Rodriguez: 3 pedidos identicos activos (#1059-1061, 3.500 c/u en 3 min) - verificar con cliente antes de despachar, riesgo ~4k en fletes."
-    },
-    {
-      "tipo": "alerta",
-      "texto": "WellFresh: tasa despacho 33% (3 de 9) - bajo el 50%, revisar operacion de despacho."
+      "texto": "Clara Rodríguez: 3 pedidos idénticos activos (#1059-1061, $83.500 c/u) — verificar con cliente antes de despachar, riesgo de ~$34k en fletes perdidos"
     },
     {
       "tipo": "reactivar",
-      "texto": "S-NMN pausada, ROAS 3.55x (ult. conocido) - reactivar C2 (ROAS 4.82) y C3 (5.55) una vez regularizada la cuenta."
+      "texto": "Campaña S-NMN pausada con ROAS 3.55x y CPA $27.146 — reactivar conjunto C2 (CPA $21.573)"
     },
     {
       "tipo": "alerta",
-      "texto": "Conjunto C-PERSONAL: ROAS 0.87x - perdiendo dinero, apagar."
+      "texto": "WellFresh: tasa despacho 25% — CPA real $20.831 pero solo 2 de 8 se despachan"
     },
     {
       "tipo": "info",
-      "texto": "Metricas Meta del dashboard = ultimos valores conocidos 13/07; hoy sin acceso a la cuenta."
+      "texto": "CTR bajando: 4.12% (7d) → 3.56% (ayer) — revisar creativos"
+    },
+    {
+      "tipo": "alerta",
+      "texto": "Conjunto C-PERSONAL: ROAS 0.87x, CPA $30.339 — perdiendo dinero"
     }
   ]
 }
