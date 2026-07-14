@@ -279,7 +279,6 @@ function applyCal(){
 function parseDay(dia){
   const parts=dia.split(' ');
   const day=parseInt(parts[1]);
-  const monStr=parts[0].replace('Jul','Jun').length?parts[0]:'';
   const months={'Ene':0,'Feb':1,'Mar':2,'Abr':3,'May':4,'Jun':5,'Jul':6,'Ago':7,'Sep':8,'Oct':9,'Nov':10,'Dic':11};
   const mon=months[parts[0]];
   if(mon===undefined)return null;
@@ -301,6 +300,10 @@ function filterAndRender(from,to){
 function renderAll(filteredTrend){
   const td=filteredTrend||D.tendencia_diaria;
   const isFiltered=filteredTrend&&filteredTrend.length!==D.tendencia_diaria.length;
+  if(td.length===0){
+    document.getElementById('summary').innerHTML=`<div class="card" style="grid-column:1/-1;text-align:center;padding:20px"><div class="card-label">Sin datos para este rango</div><div class="card-sub" style="font-size:12px;color:var(--text2);margin-top:6px">Los datos de hoy llegan con el reporte de mañana 6:30am. Prueba otro rango.</div></div>`;
+    return;
+  }
 
   // Recalculate metrics from filtered daily data
   const fGasto=td.reduce((s,d)=>s+d.gasto,0);
@@ -341,7 +344,6 @@ function renderAll(filteredTrend){
   document.getElementById('winner').innerHTML=`<div class="winner-left"><div class="wl">🏆 Ganador</div><div class="wn">${w.nombre}</div><div class="wd">Ángulo: ${w.angulo}</div><div class="wd">${w.conjunto}</div></div><div class="winner-roas">${w.roas}x</div>`;
 
   // Trend chart
-  const td=filteredTrend||D.tendencia_diaria;
   if(charts.trend)charts.trend.destroy();
   charts.trend=new Chart(document.getElementById('trend-chart'),{type:'line',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.1)',fill:true,tension:.3,yAxisID:'y'},{label:'Pedidos',data:td.map(d=>d.pedidos),borderColor:'#22c55e',tension:.3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10}}}}}});
 
