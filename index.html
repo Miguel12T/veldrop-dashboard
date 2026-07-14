@@ -382,7 +382,12 @@ function renderAll(filteredTrend){
           <div style="text-align:right"><span class="badge ${tB}">${c.tasa_despacho}%</span><br><span style="font-size:11px;color:var(--text2)">${c.pedidos_shopify}→${c.despachados}</span></div>
         </div>
       </button>
-      <div class="camp-detail">${hc?'<div class="camp-detail-inner">'+c.conjuntos.map(j=>`<div class="cd-row"><span><b>${j.nombre}</b><br><span style="font-size:10px;color:var(--text3)">CPA: ${j.cpa?fmt(j.cpa):'N/D'} · ${j.pedidos||0} ped.</span></span><span style="color:${j.roas>=2?'var(--green)':j.roas>=1?'var(--amber)':'var(--red)'}"><b>${j.roas?j.roas+'x':'N/D'}</b><br><span style="font-size:10px">${fmt(j.gasto)}</span></span></div>`).join('')+'</div>':'<div class="camp-detail-inner"><div class="cd-row" style="color:var(--text3)">Sin datos</div></div>'}</div>
+      <div class="camp-detail">${(()=>{
+        const ag=c.anuncio_ganador;
+        const agHtml=ag?`<div style="background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(59,130,246,.06));border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:8px 10px;margin:6px 0"><div style="font-size:9px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.5px">🏆 Anuncio ganador</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><div><b style="font-size:12px">${ag.nombre}</b><br><span style="font-size:10px;color:var(--text2)">${ag.conjunto} · CTR ${ag.ctr}% · ${fmt(ag.gasto)}</span></div><div style="font-size:18px;font-weight:800;color:var(--green)">${ag.roas}x</div></div></div>`:`<div style="font-size:10px;color:var(--text3);padding:6px 0">🏆 Anuncio ganador: se calcula con el próximo reporte diario</div>`;
+        const conjHtml=hc?c.conjuntos.map(j=>`<div class="cd-row"><span><b>${j.nombre}</b><br><span style="font-size:10px;color:var(--text3)">CPA: ${j.cpa?fmt(j.cpa):'N/D'} · ${j.pedidos||0} ped.</span></span><span style="color:${j.roas>=2?'var(--green)':j.roas>=1?'var(--amber)':'var(--red)'}"><b>${j.roas?j.roas+'x':'N/D'}</b><br><span style="font-size:10px">${fmt(j.gasto)}</span></span></div>`).join(''):'<div class="cd-row" style="color:var(--text3)">Sin datos</div>';
+        return '<div class="camp-detail-inner">'+agHtml+conjHtml+'</div>';
+      })()}</div>
     </div>`;
   });
 
