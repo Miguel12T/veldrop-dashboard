@@ -282,6 +282,10 @@
   "saldo_dropi": 196707,
   "alertas": [
     {
+      "tipo": "alerta",
+      "texto": "Clara Rodríguez: 3 pedidos idénticos activos (#1059-1061, $83.500 c/u) — verificar con cliente antes de despachar, riesgo de ~$34k en fletes perdidos"
+    },
+    {
       "tipo": "reactivar",
       "texto": "Campaña S-NMN pausada con ROAS 3.55x y CPA $27.146 — reactivar conjunto C2 (CPA $21.573)"
     },
