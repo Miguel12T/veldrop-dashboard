@@ -121,9 +121,11 @@ canvas{max-height:180px!important}
 
 <div class="date-bar">
   <div class="date-btn" data-range="hoy">Hoy</div>
+  <div class="date-btn" data-range="ayer">Ayer</div>
   <div class="date-btn active" data-range="7d">7 días</div>
   <div class="date-btn" data-range="14d">14 días</div>
   <div class="date-btn" data-range="mes">Este mes</div>
+  <div class="date-btn" data-range="mes_pasado">Mes pasado</div>
   <div class="date-btn" data-range="custom">📅 Elegir</div>
 </div>
 <div class="date-range-display" id="range-display" onclick="openCal()">6 jul — 13 jul 2026</div>
@@ -208,6 +210,8 @@ function applyRange(range){
   const now=new Date();
   let from,to=new Date(now);
   if(range==='hoy'){from=new Date(now);from.setHours(0,0,0,0);}
+  else if(range==='ayer'){from=new Date(now);from.setDate(from.getDate()-1);from.setHours(0,0,0,0);to=new Date(from);to.setHours(23,59,59,999);}
+  else if(range==='mes_pasado'){from=new Date(now.getFullYear(),now.getMonth()-1,1);to=new Date(now.getFullYear(),now.getMonth(),0);to.setHours(23,59,59,999);}
   else if(range==='7d'){from=new Date(now);from.setDate(from.getDate()-6);}
   else if(range==='14d'){from=new Date(now);from.setDate(from.getDate()-13);}
   else if(range==='mes'){from=new Date(now.getFullYear(),now.getMonth(),1);}
@@ -290,7 +294,7 @@ function filterAndRender(from,to){
   from.setHours(0,0,0,0);
   to.setHours(23,59,59,999);
   const td=D.tendencia_diaria.filter(d=>{
-    const dt=parseDay(d.dia);
+    const dt=d.fecha?new Date(d.fecha+'T12:00:00'):parseDay(d.dia);
     if(!dt)return true;
     return dt>=from&&dt<=to;
   });
@@ -306,12 +310,14 @@ function renderAll(filteredTrend){
   }
 
   // Recalculate metrics from filtered daily data
-  const fGasto=td.reduce((s,d)=>s+d.gasto,0);
+  const diasConGasto=td.filter(d=>d.gasto!=null).length;
+  const fGasto=diasConGasto>0?td.reduce((s,d)=>s+(d.gasto||0),0):null;
   const fPedidos=td.reduce((s,d)=>s+d.pedidos,0);
   const fVentas=td.reduce((s,d)=>s+(d.ventas||0),0);
-  const fRoas=fGasto>0&&fVentas>0?(fVentas/fGasto):null;
-  const fCpa=fPedidos>0?fGasto/fPedidos:null;
-  const fPctPub=fVentas>0?(fGasto/fVentas*100):null;
+  const gastoParcial=diasConGasto>0&&diasConGasto<td.length;
+  const fRoas=fGasto&&fVentas>0?(fVentas/fGasto):null;
+  const fCpa=fGasto&&fPedidos>0?fGasto/fPedidos:null;
+  const fPctPub=fGasto&&fVentas>0?(fGasto/fVentas*100):null;
   const fTicket=fPedidos>0?fVentas/fPedidos:null;
 
   // Use full embudo data (can't split by day) but show filtered header metrics
@@ -325,7 +331,7 @@ function renderAll(filteredTrend){
   const cpaChg={c:cpaChgRaw.c==='up'?'down':cpaChgRaw.c==='down'?'up':cpaChgRaw.c,t:cpaChgRaw.t};
 
   document.getElementById('summary').innerHTML=`
-    <div class="card c-blue"><div class="card-label">Gasto Meta ${label}</div><div class="card-value">${fmt(fGasto)}</div><div class="card-change ${cG.c}">${cG.t} vs ant.</div></div>
+    <div class="card c-blue"><div class="card-label">Gasto Meta ${label}${gastoParcial?' ⚠':''}</div><div class="card-value">${fGasto!=null?fmt(fGasto):'N/D'}</div><div class="card-change ${cG.c}">${gastoParcial?diasConGasto+' de '+td.length+' días con dato':fGasto==null?'Meta sin acceso':cG.t+' vs ant.'}</div></div>
     <div class="card c-green"><div class="card-label">ROAS ${label}</div><div class="card-value">${fRoas?fRoas.toFixed(2)+'x':'N/D'}</div><div class="card-change ${cR.c}">${cR.t} vs ant.</div></div>
     <div class="card c-amber"><div class="card-label">Pedidos ${label}</div><div class="card-value">${fPedidos}</div><div class="card-change ${cP.c}">${cP.t} vs ant.</div></div>
     <div class="card ${tasa>=70?'c-green':tasa>=50?'c-amber':'c-red'}"><div class="card-label">Tasa despacho</div><div class="card-value">${tasa}%</div><div class="card-change neutral">${e.despachados}/${e.generados}</div></div>
@@ -378,7 +384,7 @@ function renderAll(filteredTrend){
     cl.innerHTML+=`<div class="chart-box" style="margin-bottom:8px">
       <button class="camp-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><b>${c.nombre}</b> ${sB}<br><span style="font-size:11px;color:var(--text2)">Gasto: ${fmt(c.gasto)} · ROAS: ${c.roas_meta?c.roas_meta+'x':'N/D'}</span><br><span style="font-size:11px;color:var(--text2)">CPA: ${c.cpa_real?fmt(c.cpa_real):'N/D'} · %Pub: ${c.pct_publicidad?c.pct_publicidad+'%':'N/D'}</span></div>
+          <div><b>${c.nombre}</b> ${sB}<br><span style="font-size:11px;color:var(--text2)">Gasto: ${fmt(c.gasto)} · ROAS: ${c.roas_meta?c.roas_meta+'x':'N/D'}</span><br><span style="font-size:11px;color:var(--text2)">CPA: ${c.cpa_real?fmt(c.cpa_real):'N/D'} · %Pub: ${c.pct_publicidad?c.pct_publicidad+'%':'N/D'}</span>${c.historico?`<br><span style="font-size:10px;color:var(--text3)">Histórico: ${c.historico.pedidos_total} ped · ${fmt(c.historico.ventas_total)} · ${c.historico.tasa_despacho_total}% desp. · desde ${c.historico.activa_desde}</span>`:''}</div>
           <div style="text-align:right"><span class="badge ${tB}">${c.tasa_despacho}%</span><br><span style="font-size:11px;color:var(--text2)">${c.pedidos_shopify}→${c.despachados}</span></div>
         </div>
       </button>
