@@ -7,71 +7,110 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0c0c18;--card:#151528;--card2:#1a1a35;--card3:#1e1e40;--green:#22c55e;--green2:#16a34a;--green-bg:rgba(34,197,94,.1);--red:#ef4444;--red-bg:rgba(239,68,68,.1);--blue:#3b82f6;--blue-bg:rgba(59,130,246,.1);--amber:#f59e0b;--amber-bg:rgba(245,158,11,.1);--purple:#a855f7;--purple-bg:rgba(168,85,247,.1);--text:#f1f1f1;--text2:#9ca3af;--text3:#4b5563;--border:rgba(255,255,255,.06);--glow:rgba(59,130,246,.15)}
+:root{--bg:#0c0c18;--card:#151528;--card2:#1a1a35;--green:#22c55e;--green-bg:rgba(34,197,94,.1);--red:#ef4444;--red-bg:rgba(239,68,68,.1);--blue:#3b82f6;--blue-bg:rgba(59,130,246,.1);--amber:#f59e0b;--amber-bg:rgba(245,158,11,.1);--purple:#a855f7;--purple-bg:rgba(168,85,247,.1);--text:#f1f1f1;--text2:#9ca3af;--text3:#4b5563;--border:rgba(255,255,255,.06)}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0 12px 24px;max-width:480px;margin:0 auto;-webkit-font-smoothing:antialiased}
 .header{text-align:center;padding:16px 0 6px;position:sticky;top:0;background:var(--bg);z-index:10}
-.header h1{font-size:20px;font-weight:700;letter-spacing:.5px}
-.header h1 span{color:var(--blue)}
+.header h1{font-size:20px;font-weight:700}.header h1 span{color:var(--blue)}
 .updated{font-size:11px;color:var(--text3);margin-top:2px}
-.tabs{display:flex;gap:6px;margin:12px 0;overflow-x:auto;padding:2px 0}
+
+/* Date filter */
+.date-bar{display:flex;gap:4px;margin:10px 0 6px;flex-wrap:wrap}
+.date-btn{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:500;background:var(--card);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s}
+.date-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.date-range-display{width:100%;text-align:center;font-size:12px;color:var(--text2);padding:4px 0;cursor:pointer;background:var(--card);border-radius:6px;margin-bottom:8px;border:1px solid var(--border)}
+
+/* Calendar */
+.cal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:100;justify-content:center;align-items:center}
+.cal-overlay.open{display:flex}
+.cal-box{background:var(--card);border-radius:14px;padding:16px;width:300px;border:1px solid var(--border)}
+.cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cal-header span{font-size:14px;font-weight:600}
+.cal-nav{background:none;border:none;color:var(--text);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:6px}
+.cal-nav:hover{background:var(--card2)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-day-label{font-size:10px;color:var(--text3);padding:4px 0;font-weight:500}
+.cal-day{font-size:12px;padding:6px 0;border-radius:6px;cursor:pointer;transition:all .1s;color:var(--text2)}
+.cal-day:hover{background:var(--card2)}
+.cal-day.empty{cursor:default}
+.cal-day.today{color:var(--blue);font-weight:700}
+.cal-day.selected{background:var(--blue);color:#fff}
+.cal-day.in-range{background:rgba(59,130,246,.15);color:var(--blue)}
+.cal-day.disabled{color:var(--text3);opacity:.3;cursor:default}
+.cal-actions{display:flex;gap:6px;margin-top:12px}
+.cal-action{flex:1;padding:8px;border-radius:8px;border:none;font-size:12px;font-weight:500;cursor:pointer}
+.cal-action.cancel{background:var(--card2);color:var(--text2)}
+.cal-action.apply{background:var(--blue);color:#fff}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;margin:0 0 12px;overflow-x:auto}
 .tab{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;background:var(--card);color:var(--text2);border:1px solid var(--border);cursor:pointer;white-space:nowrap;transition:all .2s}
 .tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* Cards */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
 .card{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--border);position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 .card.c-green::after{background:var(--green)}.card.c-red::after{background:var(--red)}.card.c-blue::after{background:var(--blue)}.card.c-amber::after{background:var(--amber)}.card.c-purple::after{background:var(--purple)}
 .card-label{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
 .card-value{font-size:20px;font-weight:700}
-.card-change{font-size:11px;margin-top:3px;display:flex;align-items:center;gap:3px}
-.card-change.up{color:var(--green)}.card-change.down{color:var(--red)}.card-change.neutral{color:var(--text3)}
+.card-change{font-size:11px;margin-top:3px}.card-change.up{color:var(--green)}.card-change.down{color:var(--red)}.card-change.neutral{color:var(--text3)}
+
+/* Sections */
 .section{margin-bottom:14px}
 .section-title{font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
 .chart-box{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--border)}
 canvas{max-height:180px!important}
+
+/* Funnel */
 .funnel{display:flex;flex-direction:column;gap:6px}
 .funnel-row{display:flex;align-items:center;gap:8px}
 .funnel-label{width:85px;font-size:11px;color:var(--text2);flex-shrink:0}
 .funnel-bar-wrap{flex:1;height:26px;background:var(--card2);border-radius:6px;overflow:hidden}
-.funnel-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:11px;font-weight:600;color:#fff;min-width:28px;transition:width .6s ease}
+.funnel-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:11px;font-weight:600;color:#fff;min-width:28px}
 .funnel-val{width:70px;text-align:right;font-size:11px;color:var(--text2);flex-shrink:0}
+
+/* Winner */
 .winner-box{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(59,130,246,.08));border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:14px;display:flex;justify-content:space-between;align-items:center}
 .winner-left .wl{font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:.8px}
 .winner-left .wn{font-size:15px;font-weight:700;margin:2px 0}
 .winner-left .wd{font-size:11px;color:var(--text2)}
 .winner-roas{font-size:28px;font-weight:800;color:var(--green)}
+
+/* Tables */
 .tbl{width:100%;border-collapse:collapse;font-size:11px}
 .tbl th{background:var(--card2);color:var(--text3);font-weight:500;padding:8px 6px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.3px}
 .tbl td{padding:8px 6px;border-top:1px solid var(--border);background:var(--card)}
 .tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
-.tbl tr.good td{background:rgba(34,197,94,.05)}.tbl tr.bad td{background:rgba(239,68,68,.05)}
-.badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:600;letter-spacing:.3px}
+.badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:600}
 .badge.green{background:var(--green-bg);color:var(--green)}.badge.red{background:var(--red-bg);color:var(--red)}.badge.amber{background:var(--amber-bg);color:var(--amber)}.badge.blue{background:var(--blue-bg);color:var(--blue)}
+
+/* Campaign drilldown */
 .camp-toggle{width:100%;text-align:left;background:none;border:none;color:var(--text);cursor:pointer;padding:0;font:inherit}
-.camp-detail{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.camp-detail.open{max-height:500px}
+.camp-detail{max-height:0;overflow:hidden;transition:max-height .3s}.camp-detail.open{max-height:500px}
 .camp-detail-inner{padding:8px 0 4px 12px;border-left:2px solid var(--border)}
 .cd-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:11px;color:var(--text2)}
 .cd-row b{color:var(--text);font-weight:500}
+
+/* Transport */
 .transport-row{background:var(--card);border-radius:8px;padding:10px 12px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .transport-name{font-weight:600;font-size:12px}
 .transport-stats{display:flex;gap:12px;font-size:10px;color:var(--text2)}
 .transport-stats b{color:var(--text);font-weight:500}
-.alert-item{background:var(--card);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:11px;color:var(--text2);line-height:1.5;display:flex;gap:8px;align-items:flex-start}
-.alert-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+
+/* Alerts */
+.alert-item{background:var(--card);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:11px;color:var(--text2);line-height:1.5;display:flex;gap:8px}
 .alert-item.reactivar{border-left:3px solid var(--green)}.alert-item.alerta{border-left:3px solid var(--red)}.alert-item.info{border-left:3px solid var(--blue)}
+
+/* Financial */
 .fin-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .fin-item{background:var(--card);border-radius:8px;padding:10px;border:1px solid var(--border)}
-.fin-label{font-size:10px;color:var(--text3);text-transform:uppercase}
-.fin-value{font-size:16px;font-weight:700;margin-top:2px}
-.fin-input{margin-top:8px}
-.fin-input label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px}
+.fin-label{font-size:10px;color:var(--text3);text-transform:uppercase}.fin-value{font-size:16px;font-weight:700;margin-top:2px}
+.fin-input{margin-top:8px}.fin-input label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px}
 .fin-input input{width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--text);font-size:13px;outline:none}
-.fin-input input:focus{border-color:var(--blue)}
 .fin-result{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(168,85,247,.08));border:1px solid rgba(34,197,94,.15);border-radius:10px;padding:14px;margin-top:10px;text-align:center}
-.fin-result .fr-label{font-size:11px;color:var(--text2)}
-.fin-result .fr-value{font-size:24px;font-weight:800;margin-top:4px}
-.footer{text-align:center;padding:16px 0;font-size:10px;color:var(--text3)}
+.fin-result .fr-label{font-size:11px;color:var(--text2)}.fin-result .fr-value{font-size:24px;font-weight:800;margin-top:4px}
 .hidden{display:none}
+.footer{text-align:center;padding:16px 0;font-size:10px;color:var(--text3)}
 </style>
 </head>
 <body>
@@ -80,7 +119,31 @@ canvas{max-height:180px!important}
   <div class="updated" id="updated"></div>
 </div>
 
-<div class="tabs" id="tabs">
+<div class="date-bar">
+  <div class="date-btn" data-range="hoy">Hoy</div>
+  <div class="date-btn active" data-range="7d">7 días</div>
+  <div class="date-btn" data-range="14d">14 días</div>
+  <div class="date-btn" data-range="mes">Este mes</div>
+  <div class="date-btn" data-range="custom">📅 Elegir</div>
+</div>
+<div class="date-range-display" id="range-display" onclick="openCal()">6 jul — 13 jul 2026</div>
+
+<div class="cal-overlay" id="cal-overlay" onclick="if(event.target===this)closeCal()">
+  <div class="cal-box">
+    <div class="cal-header">
+      <button class="cal-nav" onclick="navMonth(-1)">‹</button>
+      <span id="cal-month-label"></span>
+      <button class="cal-nav" onclick="navMonth(1)">›</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-actions">
+      <button class="cal-action cancel" onclick="closeCal()">Cancelar</button>
+      <button class="cal-action apply" onclick="applyCal()">Aplicar</button>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
   <div class="tab active" data-tab="resumen">Resumen</div>
   <div class="tab" data-tab="meta">Meta Ads</div>
   <div class="tab" data-tab="campanias">Campañas</div>
@@ -89,160 +152,217 @@ canvas{max-height:180px!important}
 
 <div id="tab-resumen">
   <div class="cards" id="summary"></div>
-  <div class="section">
-    <div class="section-title">Embudo COD (7 días)</div>
-    <div class="chart-box"><div class="funnel" id="funnel"></div></div>
-  </div>
-  <div class="section">
-    <div class="section-title">Anuncio ganador</div>
-    <div class="winner-box" id="winner"></div>
-  </div>
-  <div class="section">
-    <div class="section-title">Tendencia diaria</div>
-    <div class="chart-box"><canvas id="trend-chart"></canvas></div>
-  </div>
-  <div class="section">
-    <div class="section-title">Top productos</div>
-    <div class="chart-box"><canvas id="products-chart"></canvas></div>
-  </div>
-  <div class="section">
-    <div class="section-title">Alertas</div>
-    <div id="alerts"></div>
-  </div>
+  <div class="section"><div class="section-title">Embudo COD</div><div class="chart-box"><div class="funnel" id="funnel"></div></div></div>
+  <div class="section"><div class="section-title">Anuncio ganador</div><div class="winner-box" id="winner"></div></div>
+  <div class="section"><div class="section-title">Tendencia diaria</div><div class="chart-box"><canvas id="trend-chart"></canvas></div></div>
+  <div class="section"><div class="section-title">Top productos</div><div class="chart-box"><canvas id="products-chart"></canvas></div></div>
+  <div class="section"><div class="section-title">Alertas</div><div id="alerts"></div></div>
 </div>
 
 <div id="tab-meta" class="hidden">
-  <div class="section">
-    <div class="section-title">Métricas por ventana</div>
-    <div class="chart-box"><div style="overflow-x:auto"><table class="tbl" id="meta-table"></table></div></div>
-  </div>
-  <div class="section">
-    <div class="section-title">Gasto vs ROAS (7 días)</div>
-    <div class="chart-box"><canvas id="gasto-roas-chart"></canvas></div>
-  </div>
+  <div class="section"><div class="section-title">Métricas por ventana</div><div class="chart-box"><div style="overflow-x:auto"><table class="tbl" id="meta-table"></table></div></div></div>
+  <div class="section"><div class="section-title">Gasto vs ROAS</div><div class="chart-box"><canvas id="gasto-roas-chart"></canvas></div></div>
 </div>
 
 <div id="tab-campanias" class="hidden">
-  <div class="section">
-    <div class="section-title">Rendimiento por campaña</div>
-    <div id="camp-list"></div>
-  </div>
-  <div class="section">
-    <div class="section-title">Transportadoras</div>
-    <div id="transport"></div>
-  </div>
+  <div class="section"><div class="section-title">Campañas (atribución UTM)</div><div id="camp-list"></div></div>
+  <div class="section"><div class="section-title">Transportadoras</div><div id="transport"></div></div>
 </div>
 
 <div id="tab-financiero" class="hidden">
   <div class="section">
-    <div class="section-title">Resumen financiero (7 días)</div>
+    <div class="section-title">Financiero</div>
     <div class="fin-grid" id="fin-grid"></div>
-    <div class="fin-input">
-      <label>Ingresa tu COGS promedio por producto (COP) para calcular margen:</label>
-      <input type="number" id="cogs-input" placeholder="Ej: 25000" oninput="calcMargin()">
-    </div>
+    <div class="fin-input"><label>COGS promedio por producto (COP):</label><input type="number" id="cogs-input" placeholder="Ej: 25000" oninput="calcMargin()"></div>
     <div class="fin-result hidden" id="fin-result">
-      <div class="fr-label">Ganancia estimada (7 días)</div>
-      <div class="fr-value" id="fr-ganancia"></div>
-      <div class="fr-label" style="margin-top:8px">Margen</div>
-      <div class="fr-value" id="fr-margen" style="font-size:18px"></div>
+      <div class="fr-label">Ganancia estimada</div><div class="fr-value" id="fr-ganancia"></div>
+      <div class="fr-label" style="margin-top:8px">Margen</div><div class="fr-value" id="fr-margen" style="font-size:18px"></div>
     </div>
   </div>
 </div>
 
-<div class="footer">VELDROP · Actualizado automáticamente cada mañana</div>
+<div class="footer">VELDROP · Datos actualizados automáticamente</div>
 
 <script>
-let D;
-const fmt=n=>n==null?'N/D':'$'+n.toLocaleString('es-CO');
-const pct=n=>n==null?'N/D':n.toFixed(2)+'%';
+let D,charts={},calMonth,calYear,calStart=null,calEnd=null,selecting=false;
+const fmt=n=>n==null?'N/D':'$'+Math.round(n).toLocaleString('es-CO');
+const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DAYS=['Do','Lu','Ma','Mi','Ju','Vi','Sa'];
 
-document.querySelectorAll('.tab').forEach(t=>{
-  t.onclick=()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    ['resumen','meta','campanias','financiero'].forEach(id=>{
-      document.getElementById('tab-'+id).classList.toggle('hidden',id!==t.dataset.tab);
-    });
-  };
+// Tabs
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  ['resumen','meta','campanias','financiero'].forEach(id=>document.getElementById('tab-'+id).classList.toggle('hidden',id!==t.dataset.tab));
 });
 
-function change(current,prev){
-  if(!prev||!current)return{cls:'neutral',txt:''};
-  const diff=((current-prev)/prev*100).toFixed(0);
-  if(diff>0)return{cls:'up',txt:'▲ +'+diff+'% vs sem. ant.'};
-  if(diff<0)return{cls:'down',txt:'▼ '+diff+'% vs sem. ant.'};
-  return{cls:'neutral',txt:'= sin cambio'};
+// Date buttons
+document.querySelectorAll('.date-btn').forEach(b=>b.onclick=()=>{
+  if(b.dataset.range==='custom'){openCal();return;}
+  document.querySelectorAll('.date-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  applyRange(b.dataset.range);
+});
+
+function applyRange(range){
+  const now=new Date();
+  let from,to=new Date(now);
+  if(range==='hoy'){from=new Date(now);from.setHours(0,0,0,0);}
+  else if(range==='7d'){from=new Date(now);from.setDate(from.getDate()-6);}
+  else if(range==='14d'){from=new Date(now);from.setDate(from.getDate()-13);}
+  else if(range==='mes'){from=new Date(now.getFullYear(),now.getMonth(),1);}
+  else return;
+  updateDisplay(from,to);
+  filterAndRender(from,to);
 }
 
-async function init(){
-  const r=await fetch('data.json?t='+Date.now());
-  D=await r.json();
+function updateDisplay(from,to){
+  const f=d=>`${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3).toLowerCase()}`;
+  document.getElementById('range-display').textContent=`${f(from)} — ${f(to)} ${to.getFullYear()}`;
+}
 
-  document.getElementById('updated').textContent='Actualizado: '+D.ultima_actualizacion;
+// Calendar
+function openCal(){
+  const now=new Date();
+  calMonth=now.getMonth();calYear=now.getFullYear();
+  calStart=null;calEnd=null;selecting=false;
+  renderCal();
+  document.getElementById('cal-overlay').classList.add('open');
+}
+function closeCal(){document.getElementById('cal-overlay').classList.remove('open');}
+function navMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
 
+function renderCal(){
+  document.getElementById('cal-month-label').textContent=`${MONTHS[calMonth]} ${calYear}`;
+  const grid=document.getElementById('cal-grid');
+  grid.innerHTML=DAYS.map(d=>`<div class="cal-day-label">${d}</div>`).join('');
+  const first=new Date(calYear,calMonth,1).getDay();
+  const days=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  for(let i=0;i<first;i++)grid.innerHTML+=`<div class="cal-day empty"></div>`;
+  for(let d=1;d<=days;d++){
+    const dt=new Date(calYear,calMonth,d);
+    const isToday=dt.toDateString()===today.toDateString();
+    const isFuture=dt>today;
+    let cls='cal-day';
+    if(isToday)cls+=' today';
+    if(isFuture)cls+=' disabled';
+    if(calStart&&dt.toDateString()===calStart.toDateString())cls+=' selected';
+    if(calEnd&&dt.toDateString()===calEnd.toDateString())cls+=' selected';
+    if(calStart&&calEnd&&dt>calStart&&dt<calEnd)cls+=' in-range';
+    grid.innerHTML+=`<div class="${cls}" data-d="${d}" onclick="pickDay(${d},${isFuture})">${d}</div>`;
+  }
+}
+
+function pickDay(d,future){
+  if(future)return;
+  const dt=new Date(calYear,calMonth,d);
+  if(!calStart||calEnd){calStart=dt;calEnd=null;selecting=true;}
+  else{
+    if(dt<calStart){calEnd=calStart;calStart=dt;}
+    else calEnd=dt;
+    selecting=false;
+  }
+  renderCal();
+}
+
+function applyCal(){
+  if(!calStart)return;
+  if(!calEnd)calEnd=new Date(calStart);
+  document.querySelectorAll('.date-btn').forEach(x=>x.classList.remove('active'));
+  document.querySelector('[data-range="custom"]').classList.add('active');
+  updateDisplay(calStart,calEnd);
+  filterAndRender(calStart,calEnd);
+  closeCal();
+}
+
+function filterAndRender(from,to){
+  if(!D)return;
+  const td=D.tendencia_diaria.filter(d=>{
+    const parts=d.dia.split(' ');
+    const day=parseInt(parts[1]);const mon=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'].indexOf(parts[0]);
+    if(mon===-1)return true;
+    const dt=new Date(2026,mon,day);
+    return dt>=from&&dt<=to;
+  });
+  renderAll(td);
+}
+
+function renderAll(filteredTrend){
   const m7=D.meta.siete_dias;const e=D.embudo;const sa=D.semana_anterior||{};
-  const tasa=Math.round(e.despachados/e.generados*100);
-  const cG=change(m7.gasto,sa.gasto);const cP=change(e.generados,sa.pedidos);const cR=change(m7.roas,sa.roas);
+  const tasa=e.generados?Math.round(e.despachados/e.generados*100):0;
+
+  const chg=(c,p)=>{if(!p||!c)return{c:'neutral',t:''};const d=((c-p)/p*100).toFixed(0);return d>0?{c:'up',t:'▲ +'+d+'%'}:d<0?{c:'down',t:'▼ '+d+'%'}:{c:'neutral',t:'='}};
+  const cG=chg(m7.gasto,sa.gasto),cP=chg(e.generados,sa.pedidos),cR=chg(m7.roas,sa.roas);
+  const currentCpa=e.generados?m7.gasto/e.generados:null;
+  const cpaChgRaw=chg(currentCpa,sa.cpa);
+  const cpaChg={c:cpaChgRaw.c==='up'?'down':cpaChgRaw.c==='down'?'up':cpaChgRaw.c,t:cpaChgRaw.t};
 
   document.getElementById('summary').innerHTML=`
-    <div class="card c-blue"><div class="card-label">Gasto Meta 7d</div><div class="card-value">${fmt(m7.gasto)}</div><div class="card-change ${cG.cls}">${cG.txt}</div></div>
-    <div class="card c-green"><div class="card-label">ROAS 7d</div><div class="card-value">${m7.roas?m7.roas.toFixed(2)+'x':'N/D'}</div><div class="card-change ${cR.cls}">${cR.txt}</div></div>
-    <div class="card c-amber"><div class="card-label">Pedidos 7d</div><div class="card-value">${e.generados}</div><div class="card-change ${cP.cls}">${cP.txt}</div></div>
-    <div class="card ${tasa>=70?'c-green':tasa>=50?'c-amber':'c-red'}"><div class="card-label">Tasa despacho</div><div class="card-value">${tasa}%</div><div class="card-change neutral">${e.despachados} de ${e.generados}</div></div>
+    <div class="card c-blue"><div class="card-label">Gasto Meta</div><div class="card-value">${fmt(m7.gasto)}</div><div class="card-change ${cG.c}">${cG.t} vs ant.</div></div>
+    <div class="card c-green"><div class="card-label">ROAS</div><div class="card-value">${m7.roas?m7.roas.toFixed(2)+'x':'N/D'}</div><div class="card-change ${cR.c}">${cR.t} vs ant.</div></div>
+    <div class="card c-amber"><div class="card-label">Pedidos</div><div class="card-value">${e.generados}</div><div class="card-change ${cP.c}">${cP.t} vs ant.</div></div>
+    <div class="card ${tasa>=70?'c-green':tasa>=50?'c-amber':'c-red'}"><div class="card-label">Tasa despacho</div><div class="card-value">${tasa}%</div><div class="card-change neutral">${e.despachados}/${e.generados}</div></div>
     <div class="card c-purple"><div class="card-label">Saldo Dropi</div><div class="card-value">${fmt(D.saldo_dropi)}</div></div>
-    <div class="card"><div class="card-label">Ticket promedio</div><div class="card-value">${fmt(Math.round(e.valor_generados/e.generados))}</div></div>`;
+    <div class="card"><div class="card-label">Ticket promedio</div><div class="card-value">${e.generados?fmt(e.valor_generados/e.generados):'—'}</div></div>
+    <div class="card c-red"><div class="card-label">CPA real (7d)</div><div class="card-value">${e.generados?fmt(m7.gasto/e.generados):'N/D'}</div><div class="card-change ${cpaChg.c}">${cpaChg.t} vs ant.</div></div>
+    <div class="card"><div class="card-label">% Publicidad</div><div class="card-value">${e.valor_generados?((m7.gasto/e.valor_generados)*100).toFixed(1)+'%':'N/D'}</div><div class="card-change neutral">gasto / ventas</div></div>`;
 
-  const maxF=e.generados;
+  // Funnel
+  const maxF=e.generados||1;
   const fd=[{l:'Generados',v:e.generados,a:e.valor_generados,c:'var(--blue)'},{l:'Despachados',v:e.despachados,a:e.valor_despachados,c:'var(--green)'},{l:'Pend. despacho',v:e.pendientes_despacho,a:e.valor_pendientes,c:'var(--amber)'},{l:'Prepago conf.',v:e.prepago_confirmado,a:e.valor_prepago,c:'var(--purple)'}];
   document.getElementById('funnel').innerHTML=fd.map(f=>`<div class="funnel-row"><div class="funnel-label">${f.l}</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${Math.max(8,f.v/maxF*100)}%;background:${f.c}">${f.v}</div></div><div class="funnel-val">${fmt(f.a)}</div></div>`).join('');
 
+  // Winner
   const w=D.anuncio_ganador;
   document.getElementById('winner').innerHTML=`<div class="winner-left"><div class="wl">🏆 Ganador</div><div class="wn">${w.nombre}</div><div class="wd">Ángulo: ${w.angulo}</div><div class="wd">${w.conjunto}</div></div><div class="winner-roas">${w.roas}x</div>`;
 
   // Trend chart
-  const td=D.tendencia_diaria;
-  new Chart(document.getElementById('trend-chart'),{type:'line',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.1)',fill:true,tension:.3,yAxisID:'y'},{label:'Pedidos',data:td.map(d=>d.pedidos),borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.1)',fill:false,tension:.3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10}}}}}});
+  const td=filteredTrend||D.tendencia_diaria;
+  if(charts.trend)charts.trend.destroy();
+  charts.trend=new Chart(document.getElementById('trend-chart'),{type:'line',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.1)',fill:true,tension:.3,yAxisID:'y'},{label:'Pedidos',data:td.map(d=>d.pedidos),borderColor:'#22c55e',tension:.3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10}}}}}});
 
   // Products
-  new Chart(document.getElementById('products-chart'),{type:'bar',data:{labels:D.top_productos.map(p=>p.nombre),datasets:[{data:D.top_productos.map(p=>p.ventas),backgroundColor:['#22c55e','#3b82f6','#f59e0b','#a855f7'],borderRadius:6,barThickness:28}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10},callback:v=>fmt(v)}},y:{grid:{display:false},ticks:{color:'#f1f1f1',font:{size:11}}}}}});
+  if(charts.products)charts.products.destroy();
+  charts.products=new Chart(document.getElementById('products-chart'),{type:'bar',data:{labels:D.top_productos.map(p=>p.nombre),datasets:[{data:D.top_productos.map(p=>p.ventas),backgroundColor:['#22c55e','#3b82f6','#f59e0b'],borderRadius:6,barThickness:28}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10},callback:v=>fmt(v)}},y:{grid:{display:false},ticks:{color:'#f1f1f1',font:{size:11}}}}}});
 
   // Alerts
-  document.getElementById('alerts').innerHTML=D.alertas.map(a=>`<div class="alert-item ${a.tipo}"><span class="alert-icon">${a.tipo==='reactivar'?'🟢':a.tipo==='alerta'?'🔴':'🔵'}</span><span>${a.texto}</span></div>`).join('');
+  document.getElementById('alerts').innerHTML=D.alertas.map(a=>`<div class="alert-item ${a.tipo}"><span style="font-size:14px">${a.tipo==='reactivar'?'🟢':a.tipo==='alerta'?'🔴':'🔵'}</span><span>${a.texto}</span></div>`).join('');
 
   // Meta table
   const ma=D.meta;
   document.getElementById('meta-table').innerHTML=`<tr><th></th><th>Ayer</th><th>3 días</th><th>7 días</th></tr>
     <tr><td>Gasto</td><td class="n">${fmt(ma.ayer.gasto)}</td><td class="n">${fmt(ma.tres_dias.gasto)}</td><td class="n">${fmt(ma.siete_dias.gasto)}</td></tr>
     <tr><td>CPM</td><td class="n">${fmt(ma.ayer.cpm)}</td><td class="n">${fmt(ma.tres_dias.cpm)}</td><td class="n">${fmt(ma.siete_dias.cpm)}</td></tr>
-    <tr><td>CTR</td><td class="n">${pct(ma.ayer.ctr)}</td><td class="n">${pct(ma.tres_dias.ctr)}</td><td class="n">${pct(ma.siete_dias.ctr)}</td></tr>
+    <tr><td>CTR</td><td class="n">${ma.ayer.ctr}%</td><td class="n">${ma.tres_dias.ctr}%</td><td class="n">${ma.siete_dias.ctr}%</td></tr>
     <tr><td>Frecuencia</td><td class="n">${ma.ayer.frecuencia}</td><td class="n">${ma.tres_dias.frecuencia}</td><td class="n">${ma.siete_dias.frecuencia}</td></tr>
-    <tr><td>ROAS</td><td class="n">${ma.ayer.roas?ma.ayer.roas+'x':'N/D'}</td><td class="n">${ma.tres_dias.roas}x</td><td class="n">${ma.siete_dias.roas}x</td></tr>`;
+    <tr><td>ROAS</td><td class="n">${ma.ayer.roas?ma.ayer.roas+'x':'N/D'}</td><td class="n">${ma.tres_dias.roas}x</td><td class="n">${ma.siete_dias.roas}x</td></tr>
+    <tr><td>CPA</td><td class="n">${ma.ayer.cpa?fmt(ma.ayer.cpa):'N/D'}</td><td class="n">${ma.tres_dias.cpa?fmt(ma.tres_dias.cpa):'N/D'}</td><td class="n">${ma.siete_dias.cpa?fmt(ma.siete_dias.cpa):'N/D'}</td></tr>
+    <tr><td>% Publicidad</td><td class="n">${ma.ayer.roas?(100/ma.ayer.roas).toFixed(1)+'%':'N/D'}</td><td class="n">${(100/ma.tres_dias.roas).toFixed(1)}%</td><td class="n">${(100/ma.siete_dias.roas).toFixed(1)}%</td></tr>`;
 
-  // Gasto vs ROAS chart
-  new Chart(document.getElementById('gasto-roas-chart'),{type:'bar',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),backgroundColor:'rgba(59,130,246,.3)',borderColor:'#3b82f6',borderWidth:1,borderRadius:4,yAxisID:'y',order:2},{label:'ROAS',data:td.map(d=>d.roas),type:'line',borderColor:'#22c55e',backgroundColor:'transparent',tension:.3,yAxisID:'y1',order:1,pointRadius:4,pointBackgroundColor:'#22c55e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10},callback:v=>v?v+'x':''},min:0}}}});
+  // Gasto vs ROAS
+  if(charts.gastoRoas)charts.gastoRoas.destroy();
+  charts.gastoRoas=new Chart(document.getElementById('gasto-roas-chart'),{type:'bar',data:{labels:td.map(d=>d.dia),datasets:[{label:'Gasto',data:td.map(d=>d.gasto),backgroundColor:'rgba(59,130,246,.3)',borderColor:'#3b82f6',borderWidth:1,borderRadius:4,yAxisID:'y',order:2},{label:'ROAS',data:td.map(d=>d.roas),type:'line',borderColor:'#22c55e',tension:.3,yAxisID:'y1',order:1,pointRadius:4,pointBackgroundColor:'#22c55e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#9ca3af',font:{size:10}}}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#6b7280',font:{size:10}}},y:{position:'left',grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#3b82f6',font:{size:10},callback:v=>fmt(v)}},y1:{position:'right',grid:{display:false},ticks:{color:'#22c55e',font:{size:10},callback:v=>v?v+'x':''},min:0}}}});
 
-  // Campaigns with drilldown
-  const cl=document.getElementById('camp-list');
-  D.campanias.forEach((c,i)=>{
-    const tBadge=c.tasa_despacho>=70?'green':c.tasa_despacho>=50?'amber':'red';
-    const sBadge=c.estado==='ACTIVE'?'<span class="badge green">activa</span>':'<span class="badge amber">pausada</span>';
-    const hasConj=c.conjuntos&&c.conjuntos.length>0;
+  // Campaigns
+  const cl=document.getElementById('camp-list');cl.innerHTML='';
+  D.campanias.forEach(c=>{
+    const tB=c.tasa_despacho>=70?'green':c.tasa_despacho>=50?'amber':'red';
+    const sB=c.estado==='ACTIVE'?'<span class="badge green">activa</span>':'<span class="badge amber">pausada</span>';
+    const hc=c.conjuntos&&c.conjuntos.length>0;
     cl.innerHTML+=`<div class="chart-box" style="margin-bottom:8px">
       <button class="camp-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><b>${c.nombre}</b> ${sBadge}<br><span style="font-size:11px;color:var(--text2)">Gasto: ${fmt(c.gasto)} · ROAS: ${c.roas_meta?c.roas_meta+'x':'N/D'} · CTR: ${c.ctr}%</span></div>
-          <div style="text-align:right"><span class="badge ${tBadge}">${c.tasa_despacho}% desp.</span><br><span style="font-size:11px;color:var(--text2)">${c.pedidos_shopify} ped. → ${c.despachados} desp.</span></div>
+          <div><b>${c.nombre}</b> ${sB}<br><span style="font-size:11px;color:var(--text2)">Gasto: ${fmt(c.gasto)} · ROAS: ${c.roas_meta?c.roas_meta+'x':'N/D'}</span><br><span style="font-size:11px;color:var(--text2)">CPA: ${c.cpa_real?fmt(c.cpa_real):'N/D'} · %Pub: ${c.pct_publicidad?c.pct_publicidad+'%':'N/D'}</span></div>
+          <div style="text-align:right"><span class="badge ${tB}">${c.tasa_despacho}%</span><br><span style="font-size:11px;color:var(--text2)">${c.pedidos_shopify}→${c.despachados}</span></div>
         </div>
       </button>
-      <div class="camp-detail${hasConj?'':' open'}">
-        <div class="camp-detail-inner">${hasConj?c.conjuntos.map(cj=>`<div class="cd-row"><span><b>${cj.nombre}</b> · CTR ${cj.ctr}%</span><span>ROAS <b style="color:${cj.roas>=2?'var(--green)':cj.roas>=1?'var(--amber)':'var(--red)'}">${cj.roas?cj.roas+'x':'N/D'}</b> · ${fmt(cj.gasto)}</span></div>`).join(''):'<div class="cd-row" style="color:var(--text3)">Sin datos suficientes aún</div>'}</div>
-      </div>
+      <div class="camp-detail">${hc?'<div class="camp-detail-inner">'+c.conjuntos.map(j=>`<div class="cd-row"><span><b>${j.nombre}</b><br><span style="font-size:10px;color:var(--text3)">CPA: ${j.cpa?fmt(j.cpa):'N/D'} · ${j.pedidos||0} ped.</span></span><span style="color:${j.roas>=2?'var(--green)':j.roas>=1?'var(--amber)':'var(--red)'}"><b>${j.roas?j.roas+'x':'N/D'}</b><br><span style="font-size:10px">${fmt(j.gasto)}</span></span></div>`).join('')+'</div>':'<div class="camp-detail-inner"><div class="cd-row" style="color:var(--text3)">Sin datos</div></div>'}</div>
     </div>`;
   });
 
   // Transport
-  const tr=document.getElementById('transport');
+  const tr=document.getElementById('transport');tr.innerHTML='';
   D.transportadoras.forEach(t=>{
     const color=t.efectividad>=80?'var(--green)':t.efectividad>0?'var(--amber)':'var(--text3)';
     tr.innerHTML+=`<div class="transport-row"><div class="transport-name" style="color:${color}">${t.nombre}</div><div class="transport-stats"><div>Efect: <b>${t.efectividad}%</b></div><div>Flete: <b>${fmt(t.flete_promedio)}</b></div><div><b>${t.tiempo_entrega}d</b></div></div></div>`;
@@ -253,29 +373,28 @@ async function init(){
   document.getElementById('fin-grid').innerHTML=`
     <div class="fin-item"><div class="fin-label">Inversión Meta</div><div class="fin-value" style="color:var(--red)">${fmt(f.inversion_meta)}</div></div>
     <div class="fin-item"><div class="fin-label">Valor despachado</div><div class="fin-value" style="color:var(--green)">${fmt(f.valor_despachado)}</div></div>
-    <div class="fin-item"><div class="fin-label">Prepago confirmado</div><div class="fin-value" style="color:var(--purple)">${fmt(f.prepago_confirmado)}</div></div>
+    <div class="fin-item"><div class="fin-label">Prepago conf.</div><div class="fin-value" style="color:var(--purple)">${fmt(f.prepago_confirmado)}</div></div>
     <div class="fin-item"><div class="fin-label">Flete promedio</div><div class="fin-value">${fmt(f.flete_promedio)}</div></div>`;
 }
 
 function calcMargin(){
   const cogs=parseFloat(document.getElementById('cogs-input').value);
   if(!cogs||!D)return;
-  const f=D.financiero;const e=D.embudo;
-  const ingresoBruto=f.valor_despachado+f.prepago_confirmado;
-  const totalCogs=cogs*e.generados;
-  const totalFlete=f.flete_promedio*e.despachados;
-  const comisionDropi=f.valor_despachado*(f.comision_dropi_pct/100);
-  const comisionPasarela=f.prepago_confirmado*(f.comision_pasarela_pct/100);
-  const ganancia=ingresoBruto-totalCogs-totalFlete-comisionDropi-f.inversion_meta-comisionPasarela;
-  const margen=ingresoBruto>0?(ganancia/ingresoBruto*100).toFixed(1):0;
-  const el=document.getElementById('fin-result');
-  el.classList.remove('hidden');
-  document.getElementById('fr-ganancia').textContent=fmt(Math.round(ganancia));
-  document.getElementById('fr-ganancia').style.color=ganancia>=0?'var(--green)':'var(--red)';
-  document.getElementById('fr-margen').textContent=margen+'%';
-  document.getElementById('fr-margen').style.color=ganancia>=0?'var(--green)':'var(--red)';
+  const f=D.financiero,e=D.embudo;
+  const ingreso=f.valor_despachado+f.prepago_confirmado;
+  const ganancia=ingreso-(cogs*e.generados)-(f.flete_promedio*e.despachados)-(f.valor_despachado*f.comision_dropi_pct/100)-f.inversion_meta-(f.prepago_confirmado*f.comision_pasarela_pct/100);
+  const margen=ingreso>0?(ganancia/ingreso*100).toFixed(1):0;
+  document.getElementById('fin-result').classList.remove('hidden');
+  const g=document.getElementById('fr-ganancia');g.textContent=fmt(ganancia);g.style.color=ganancia>=0?'var(--green)':'var(--red)';
+  const m=document.getElementById('fr-margen');m.textContent=margen+'%';m.style.color=ganancia>=0?'var(--green)':'var(--red)';
 }
 
+async function init(){
+  const r=await fetch('data.json?t='+Date.now());
+  D=await r.json();
+  document.getElementById('updated').textContent='Actualizado: '+D.ultima_actualizacion;
+  renderAll();
+}
 init();
 </script>
 </body>
