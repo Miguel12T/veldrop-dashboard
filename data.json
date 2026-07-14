@@ -2,67 +2,267 @@
   "fecha": "13 jul 2026",
   "ultima_actualizacion": "13/07/2026 06:30am",
   "meta": {
-    "ayer": {"gasto": 276257, "cpm": 18602, "ctr": 3.56, "frecuencia": 1.23, "roas": null, "impresiones": 14851, "clics": 528, "pedidos_pixel": 0, "cpa": null},
-    "tres_dias": {"gasto": 555265, "cpm": 19756, "ctr": 3.89, "frecuencia": 1.29, "roas": 1.88, "impresiones": 28106, "clics": 1092, "pedidos_pixel": 6, "cpa": 92544},
-    "siete_dias": {"gasto": 976826, "cpm": 22772, "ctr": 4.12, "frecuencia": 1.37, "roas": 2.57, "impresiones": 42895, "clics": 1769, "pedidos_pixel": 29, "cpa": 33683}
+    "ayer": {
+      "gasto": 276257,
+      "cpm": 18602,
+      "ctr": 3.56,
+      "frecuencia": 1.23,
+      "roas": null,
+      "impresiones": 14851,
+      "clics": 528,
+      "pedidos_pixel": 0,
+      "cpa": null
+    },
+    "tres_dias": {
+      "gasto": 555265,
+      "cpm": 19756,
+      "ctr": 3.89,
+      "frecuencia": 1.29,
+      "roas": 1.88,
+      "impresiones": 28106,
+      "clics": 1092,
+      "pedidos_pixel": 6,
+      "cpa": 92544
+    },
+    "siete_dias": {
+      "gasto": 976826,
+      "cpm": 22772,
+      "ctr": 4.12,
+      "frecuencia": 1.37,
+      "roas": 2.57,
+      "impresiones": 42895,
+      "clics": 1769,
+      "pedidos_pixel": 29,
+      "cpa": 33683
+    }
   },
   "tendencia_diaria": [
-    {"dia": "Jul 6", "gasto": 145000, "pedidos": 2, "roas": 2.1, "ventas": 304500},
-    {"dia": "Jul 7", "gasto": 162000, "pedidos": 6, "roas": 3.2, "ventas": 518400},
-    {"dia": "Jul 8", "gasto": 148000, "pedidos": 3, "roas": 1.9, "ventas": 281200},
-    {"dia": "Jul 9", "gasto": 155000, "pedidos": 4, "roas": 2.8, "ventas": 434000},
-    {"dia": "Jul 10", "gasto": 138000, "pedidos": 4, "roas": 3.1, "ventas": 427800},
-    {"dia": "Jul 11", "gasto": 152000, "pedidos": 5, "roas": 2.4, "ventas": 364800},
-    {"dia": "Jul 12", "gasto": 276257, "pedidos": 0, "roas": null, "ventas": 0}
+    {
+      "dia": "Jul 6",
+      "gasto": 145000,
+      "pedidos": 2,
+      "roas": 2.1,
+      "ventas": 304500
+    },
+    {
+      "dia": "Jul 7",
+      "gasto": 162000,
+      "pedidos": 6,
+      "roas": 3.2,
+      "ventas": 518400
+    },
+    {
+      "dia": "Jul 8",
+      "gasto": 148000,
+      "pedidos": 3,
+      "roas": 1.9,
+      "ventas": 281200
+    },
+    {
+      "dia": "Jul 9",
+      "gasto": 155000,
+      "pedidos": 4,
+      "roas": 2.8,
+      "ventas": 434000
+    },
+    {
+      "dia": "Jul 10",
+      "gasto": 138000,
+      "pedidos": 4,
+      "roas": 3.1,
+      "ventas": 427800
+    },
+    {
+      "dia": "Jul 11",
+      "gasto": 152000,
+      "pedidos": 5,
+      "roas": 2.4,
+      "ventas": 364800
+    },
+    {
+      "dia": "Jul 12",
+      "gasto": 276257,
+      "pedidos": 0,
+      "roas": null,
+      "ventas": 0
+    }
   ],
   "embudo": {
-    "generados": 29, "despachados": 22, "pendientes_despacho": 7, "prepago_confirmado": 5,
-    "valor_generados": 3092800, "valor_despachados": 2505300, "valor_pendientes": 587500, "valor_prepago": 503200
+    "generados": 29,
+    "despachados": 22,
+    "pendientes_despacho": 7,
+    "prepago_confirmado": 5,
+    "valor_generados": 3092800,
+    "valor_despachados": 2505300,
+    "valor_pendientes": 587500,
+    "valor_prepago": 503200
   },
   "campanias": [
     {
-      "nombre": "CAMP VENT S-NMN 25/06", "id": "52559512181861", "estado": "PAUSED",
-      "gasto": 570076, "roas_meta": 3.55, "ctr": 5.64, "cpm": 29648, "frecuencia": 1.29,
-      "pedidos_shopify": 21, "despachados": 20, "tasa_despacho": 95,
-      "cpa_real": 27146, "pct_publicidad": 22.4,
+      "nombre": "CAMP VENT S-NMN 25/06",
+      "id": "52559512181861",
+      "estado": "PAUSED",
+      "gasto": 570076,
+      "roas_meta": 3.55,
+      "ctr": 5.64,
+      "cpm": 29648,
+      "frecuencia": 1.29,
+      "pedidos_shopify": 21,
+      "despachados": 20,
+      "tasa_despacho": 95,
+      "cpa_real": 27146,
+      "pct_publicidad": 22.4,
       "conjuntos": [
-        {"nombre": "C2 AV S-MNM", "roas": 4.82, "gasto": 151010, "ctr": 5.04, "estado": "PAUSED", "pedidos": 7, "cpa": 21573},
-        {"nombre": "C6 AV S-MNM", "roas": 3.58, "gasto": 205296, "ctr": 5.87, "estado": "PAUSED", "pedidos": 6, "cpa": 34216},
-        {"nombre": "C1 AV S-MNM", "roas": 2.59, "gasto": 118364, "ctr": 6.63, "estado": "PAUSED", "pedidos": 4, "cpa": 29591},
-        {"nombre": "C3 AV S-MNM", "roas": 5.55, "gasto": 15244, "ctr": 4.67, "estado": "PAUSED", "pedidos": 2, "cpa": 7622},
-        {"nombre": "C5 AV S-MNM", "roas": 2.57, "gasto": 65866, "ctr": 4.40, "estado": "PAUSED", "pedidos": 2, "cpa": 32933}
-      ]
+        {
+          "nombre": "C2 AV S-MNM",
+          "roas": 4.82,
+          "gasto": 151010,
+          "ctr": 5.04,
+          "estado": "PAUSED",
+          "pedidos": 7,
+          "cpa": 21573
+        },
+        {
+          "nombre": "C6 AV S-MNM",
+          "roas": 3.58,
+          "gasto": 205296,
+          "ctr": 5.87,
+          "estado": "PAUSED",
+          "pedidos": 6,
+          "cpa": 34216
+        },
+        {
+          "nombre": "C1 AV S-MNM",
+          "roas": 2.59,
+          "gasto": 118364,
+          "ctr": 6.63,
+          "estado": "PAUSED",
+          "pedidos": 4,
+          "cpa": 29591
+        },
+        {
+          "nombre": "C3 AV S-MNM",
+          "roas": 5.55,
+          "gasto": 15244,
+          "ctr": 4.67,
+          "estado": "PAUSED",
+          "pedidos": 2,
+          "cpa": 7622
+        },
+        {
+          "nombre": "C5 AV S-MNM",
+          "roas": 2.57,
+          "gasto": 65866,
+          "ctr": 4.4,
+          "estado": "PAUSED",
+          "pedidos": 2,
+          "cpa": 32933
+        }
+      ],
+      "anuncio_ganador": null
     },
     {
-      "nombre": "CAMP VENT WELL 09/07", "id": "52567619618861", "estado": "PAUSED",
-      "gasto": 166649, "roas_meta": 2.94, "ctr": 1.97, "cpm": 13773, "frecuencia": 1.36,
-      "pedidos_shopify": 8, "despachados": 2, "tasa_despacho": 25,
-      "cpa_real": 20831, "pct_publicidad": 23.1,
+      "nombre": "CAMP VENT WELL 09/07",
+      "id": "52567619618861",
+      "estado": "PAUSED",
+      "gasto": 166649,
+      "roas_meta": 2.94,
+      "ctr": 1.97,
+      "cpm": 13773,
+      "frecuencia": 1.36,
+      "pedidos_shopify": 8,
+      "despachados": 2,
+      "tasa_despacho": 25,
+      "cpa_real": 20831,
+      "pct_publicidad": 23.1,
       "conjuntos": [
-        {"nombre": "CA 1 AV M-ALIENTO", "roas": 5.43, "gasto": 75633, "ctr": 2.13, "estado": "PAUSED", "pedidos": 5, "cpa": 15127},
-        {"nombre": "CA 2 AV C-PERSONAL", "roas": 0.87, "gasto": 91016, "ctr": 1.81, "estado": "PAUSED", "pedidos": 3, "cpa": 30339}
-      ]
+        {
+          "nombre": "CA 1 AV M-ALIENTO",
+          "roas": 5.43,
+          "gasto": 75633,
+          "ctr": 2.13,
+          "estado": "PAUSED",
+          "pedidos": 5,
+          "cpa": 15127
+        },
+        {
+          "nombre": "CA 2 AV C-PERSONAL",
+          "roas": 0.87,
+          "gasto": 91016,
+          "ctr": 1.81,
+          "estado": "PAUSED",
+          "pedidos": 3,
+          "cpa": 30339
+        }
+      ],
+      "anuncio_ganador": {
+        "nombre": "CA 1 - C2",
+        "conjunto": "CA 1 AV M-ALIENTO",
+        "roas": 6.4,
+        "gasto": 64102,
+        "ctr": 2.08
+      }
     },
     {
-      "nombre": "CAMP VENT R-PRES 12/07", "id": "52568785348061", "estado": "ACTIVE",
-      "gasto": 54641, "roas_meta": null, "ctr": 2.97, "cpm": 11917, "frecuencia": 1.40,
-      "pedidos_shopify": 0, "despachados": 0, "tasa_despacho": 0,
-      "cpa_real": null, "pct_publicidad": null,
-      "conjuntos": []
+      "nombre": "CAMP VENT R-PRES 12/07",
+      "id": "52568785348061",
+      "estado": "ACTIVE",
+      "gasto": 54641,
+      "roas_meta": null,
+      "ctr": 2.97,
+      "cpm": 11917,
+      "frecuencia": 1.4,
+      "pedidos_shopify": 0,
+      "despachados": 0,
+      "tasa_despacho": 0,
+      "cpa_real": null,
+      "pct_publicidad": null,
+      "conjuntos": [],
+      "anuncio_ganador": null
     }
   ],
   "anuncio_ganador": {
-    "nombre": "CA 1 - C2", "conjunto": "CA 1 AV M-ALIENTO", "campania": "CAMP VENT WELL",
-    "angulo": "Mal aliento", "roas": 6.40, "gasto": 64102, "cpm": 11805, "ctr": 2.08, "cpa": 12820
+    "nombre": "CA 1 - C2",
+    "conjunto": "CA 1 AV M-ALIENTO",
+    "campania": "CAMP VENT WELL",
+    "angulo": "Mal aliento",
+    "roas": 6.4,
+    "gasto": 64102,
+    "cpm": 11805,
+    "ctr": 2.08,
+    "cpa": 12820
   },
   "top_productos": [
-    {"nombre": "NMN NAD+ Support", "pedidos": 22, "ventas": 3293000},
-    {"nombre": "WellFresh", "pedidos": 9, "ventas": 722000}
+    {
+      "nombre": "NMN NAD+ Support",
+      "pedidos": 22,
+      "ventas": 3293000
+    },
+    {
+      "nombre": "WellFresh",
+      "pedidos": 9,
+      "ventas": 722000
+    }
   ],
   "transportadoras": [
-    {"nombre": "ENVIA", "efectividad": 100, "flete_promedio": 16940, "tiempo_entrega": 1.3},
-    {"nombre": "INTERRAPIDISIMO", "efectividad": 0, "flete_promedio": 24145, "tiempo_entrega": 0},
-    {"nombre": "VELOCES", "efectividad": 0, "flete_promedio": 9950, "tiempo_entrega": 0}
+    {
+      "nombre": "ENVIA",
+      "efectividad": 100,
+      "flete_promedio": 16940,
+      "tiempo_entrega": 1.3
+    },
+    {
+      "nombre": "INTERRAPIDISIMO",
+      "efectividad": 0,
+      "flete_promedio": 24145,
+      "tiempo_entrega": 0
+    },
+    {
+      "nombre": "VELOCES",
+      "efectividad": 0,
+      "flete_promedio": 9950,
+      "tiempo_entrega": 0
+    }
   ],
   "financiero": {
     "inversion_meta": 976826,
@@ -74,13 +274,28 @@
     "comision_pasarela_pct": 3.5
   },
   "semana_anterior": {
-    "gasto": 820000, "pedidos": 24, "roas": 2.3, "cpa": 34167
+    "gasto": 820000,
+    "pedidos": 24,
+    "roas": 2.3,
+    "cpa": 34167
   },
   "saldo_dropi": 196707,
   "alertas": [
-    {"tipo": "reactivar", "texto": "Campaña S-NMN pausada con ROAS 3.55x y CPA $27.146 — reactivar conjunto C2 (CPA $21.573)"},
-    {"tipo": "alerta", "texto": "WellFresh: tasa despacho 25% — CPA real $20.831 pero solo 2 de 8 se despachan"},
-    {"tipo": "info", "texto": "CTR bajando: 4.12% (7d) → 3.56% (ayer) — revisar creativos"},
-    {"tipo": "alerta", "texto": "Conjunto C-PERSONAL: ROAS 0.87x, CPA $30.339 — perdiendo dinero"}
+    {
+      "tipo": "reactivar",
+      "texto": "Campaña S-NMN pausada con ROAS 3.55x y CPA $27.146 — reactivar conjunto C2 (CPA $21.573)"
+    },
+    {
+      "tipo": "alerta",
+      "texto": "WellFresh: tasa despacho 25% — CPA real $20.831 pero solo 2 de 8 se despachan"
+    },
+    {
+      "tipo": "info",
+      "texto": "CTR bajando: 4.12% (7d) → 3.56% (ayer) — revisar creativos"
+    },
+    {
+      "tipo": "alerta",
+      "texto": "Conjunto C-PERSONAL: ROAS 0.87x, CPA $30.339 — perdiendo dinero"
+    }
   ]
 }
