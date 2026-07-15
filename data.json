@@ -1,1 +1,959 @@
-{"fecha":"14 jul 2026","ultima_actualizacion":"15/07/2026 07:00 (cuenta 100% pausada)","meta":{"ayer":{"gasto":0,"cpm":null,"ctr":null,"frecuencia":null,"roas":null,"impresiones":0,"clics":0,"pedidos_pixel":0,"cpa":null},"tres_dias":{"gasto":365743,"cpm":19605,"ctr":3.58,"frecuencia":1.31,"roas":null,"impresiones":18656,"clics":667,"pedidos_pixel":0,"cpa":null},"siete_dias":{"gasto":875583,"cpm":21610,"ctr":4.07,"frecuencia":1.39,"roas":2.03,"impresiones":40518,"clics":1648,"pedidos_pixel":16,"cpa":54724}},"tendencia_diaria":[{"dia":"Jun 6","fecha":"2026-06-06","gasto":null,"roas":null,"pedidos":1,"ventas":96900,"despachados":0,"valor_despachados":0,"prepago":0,"valor_prepago":0},{"dia":"Jun 22","fecha":"2026-06-22","gasto":null,"roas":null,"pedidos":2,"ventas":349000,"despachados":2,"valor_despachados":349000,"prepago":0,"valor_prepago":0},{"dia":"Jun 23","fecha":"2026-06-23","gasto":null,"roas":null,"pedidos":1,"ventas":150000,"despachados":1,"valor_despachados":150000,"prepago":0,"valor_prepago":0},{"dia":"Jun 25","fecha":"2026-06-25","gasto":null,"roas":null,"pedidos":1,"ventas":110000,"despachados":0,"valor_despachados":0,"prepago":0,"valor_prepago":0},{"dia":"Jun 26","fecha":"2026-06-26","gasto":null,"roas":null,"pedidos":5,"ventas":664000,"despachados":4,"valor_despachados":514000,"prepago":0,"valor_prepago":0},{"dia":"Jun 27","fecha":"2026-06-27","gasto":null,"roas":null,"pedidos":5,"ventas":579000,"despachados":4,"valor_despachados":500000,"prepago":0,"valor_prepago":0},{"dia":"Jun 28","fecha":"2026-06-28","gasto":null,"roas":null,"pedidos":1,"ventas":125000,"despachados":1,"valor_despachados":125000,"prepago":0,"valor_prepago":0},{"dia":"Jun 30","fecha":"2026-06-30","gasto":null,"roas":null,"pedidos":1,"ventas":125000,"despachados":1,"valor_despachados":125000,"prepago":0,"valor_prepago":0},{"dia":"Jul 1","fecha":"2026-07-01","gasto":null,"roas":null,"pedidos":1,"ventas":79000,"despachados":1,"valor_despachados":79000,"prepago":0,"valor_prepago":0},{"dia":"Jul 2","fecha":"2026-07-02","gasto":null,"roas":null,"pedidos":4,"ventas":408000,"despachados":1,"valor_despachados":79000,"prepago":0,"valor_prepago":0},{"dia":"Jul 3","fecha":"2026-07-03","gasto":null,"roas":null,"pedidos":3,"ventas":357000,"despachados":3,"valor_despachados":357000,"prepago":0,"valor_prepago":0},{"dia":"Jul 4","fecha":"2026-07-04","gasto":null,"roas":null,"pedidos":4,"ventas":456000,"despachados":4,"valor_despachados":456000,"prepago":0,"valor_prepago":0},{"dia":"Jul 5","fecha":"2026-07-05","gasto":null,"roas":null,"pedidos":1,"ventas":99000,"despachados":0,"valor_despachados":0,"prepago":0,"valor_prepago":0},{"dia":"Jul 6","fecha":"2026-07-06","gasto":145000,"roas":1.5,"pedidos":2,"ventas":218000,"despachados":2,"valor_despachados":218000,"prepago":0,"valor_prepago":0},{"dia":"Jul 7","fecha":"2026-07-07","gasto":162000,"roas":3.7,"pedidos":6,"ventas":598650,"despachados":6,"valor_despachados":598650,"prepago":2,"valor_prepago":173550},{"dia":"Jul 8","fecha":"2026-07-08","gasto":102131,"roas":4.18,"pedidos":4,"ventas":511550,"despachados":3,"valor_despachados":422550,"prepago":1,"valor_prepago":84550},{"dia":"Jul 9","fecha":"2026-07-09","gasto":128684,"roas":2.39,"pedidos":4,"ventas":429550,"despachados":4,"valor_despachados":429550,"prepago":2,"valor_prepago":211550},{"dia":"Jul 10","fecha":"2026-07-10","gasto":117784,"roas":6.4,"pedidos":7,"ventas":807550,"despachados":5,"valor_despachados":638550,"prepago":1,"valor_prepago":122550},{"dia":"Jul 11","fecha":"2026-07-11","gasto":161241,"roas":1.81,"pedidos":8,"ventas":695500,"despachados":4,"valor_despachados":366000,"prepago":1,"valor_prepago":79000},{"dia":"Jul 12","fecha":"2026-07-12","gasto":276523,"roas":null,"pedidos":0,"ventas":0,"despachados":0,"valor_despachados":0,"prepago":0,"valor_prepago":0},{"dia":"Jul 13","fecha":"2026-07-13","gasto":89220,"roas":null,"pedidos":0,"ventas":0,"despachados":0,"valor_despachados":0,"prepago":0,"valor_prepago":0},{"dia":"Jul 14","fecha":"2026-07-14","gasto":0,"roas":null,"pedidos":0,"ventas":0,"despachados":0,"valor_despachados":0,"prepago":0,"valor_prepago":0}],"embudo":{"generados":23,"despachados":16,"pendientes_despacho":7,"prepago_confirmado":5,"valor_generados":2444150,"valor_despachados":1856650,"valor_pendientes":587500,"valor_prepago":497650},"campanias":[{"nombre":"CAMP VENT S-NMN 25/06","id":"52559512181861","estado":"PAUSED","gasto":427671,"roas_meta":3.02,"ctr":5.86,"cpm":28443,"frecuencia":1.25,"pedidos_shopify":14,"despachados":13,"tasa_despacho":93,"cpa_real":30548,"pct_publicidad":25.0,"conjuntos":[{"nombre":"C6 AV S-MNM","roas":3.47,"gasto":186013,"ctr":5.85,"estado":"CAMPAIGN_PAUSED","pedidos":6,"cpa":31002},{"nombre":"C2 AV S-MNM","roas":2.51,"gasto":118579,"ctr":5.23,"estado":"CAMPAIGN_PAUSED","pedidos":4,"cpa":29645},{"nombre":"C1 AV S-MNM","roas":1.92,"gasto":92817,"ctr":6.66,"estado":"CAMPAIGN_PAUSED","pedidos":3,"cpa":30939},{"nombre":"C5 AV S-MNM","roas":5.58,"gasto":30262,"ctr":5.86,"estado":"PAUSED","pedidos":1,"cpa":30262}],"anuncio_ganador":{"nombre":"C5 AV C2","conjunto":"C5 AV S-MNM","angulo":"NMN","roas":8.51,"gasto":19869,"cpm":43958,"ctr":6.42,"cpa":19869,"estado":"PAUSED","nota":"Mejor ROAS de la cuenta pero pausado a nivel anuncio y conjunto"},"historico":{"pedidos_total":44,"ventas_total":5053800,"despachados_total":39,"tasa_despacho_total":89,"prepago_total":6,"activa_desde":"2026-06-26","ultimo_pedido":"2026-07-11"}},{"nombre":"CAMP VENT WELL 09/07","id":"52567619618861","estado":"PAUSED","gasto":178214,"roas_meta":2.75,"ctr":1.93,"cpm":14011,"frecuencia":1.35,"pedidos_shopify":9,"despachados":3,"tasa_despacho":33,"cpa_real":19802,"pct_publicidad":24.2,"conjuntos":[{"nombre":"CA 1 AV M-ALIENTO","roas":5.0,"gasto":82110,"ctr":2.1,"estado":"CAMPAIGN_PAUSED","pedidos":8,"cpa":10264},{"nombre":"CA 2 AV C-PERSONAL","roas":0.82,"gasto":96104,"ctr":1.76,"estado":"CAMPAIGN_PAUSED","pedidos":1,"cpa":96104}],"anuncio_ganador":{"nombre":"CA 1 - C2","conjunto":"CA 1 AV M-ALIENTO","angulo":"Mal aliento","roas":5.83,"gasto":70429,"cpm":12128,"ctr":2.05,"cpa":14086,"estado":"CAMPAIGN_PAUSED"},"historico":{"pedidos_total":9,"ventas_total":735500,"despachados_total":3,"tasa_despacho_total":33,"prepago_total":1,"activa_desde":"2026-07-10","ultimo_pedido":"2026-07-11"}},{"nombre":"CAMP VENT S-NMN 11/07","id":"52568383498861","estado":"PAUSED","gasto":178160,"roas_meta":null,"ctr":5.57,"cpm":31109,"frecuencia":1.17,"pedidos_shopify":0,"despachados":0,"tasa_despacho":null,"cpa_real":null,"pct_publicidad":null,"conjuntos":[{"nombre":"CA 2 AV NMN","roas":null,"gasto":50557,"ctr":5.53,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null},{"nombre":"CA 3 AV NMN","roas":null,"gasto":47076,"ctr":5.81,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null},{"nombre":"CA 4 AV NMN","roas":null,"gasto":43773,"ctr":5.38,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null},{"nombre":"CA 1 AV NMN","roas":null,"gasto":36754,"ctr":5.57,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null}],"anuncio_ganador":null},{"nombre":"CAMP VENT R-PRES 12/07","id":"52568785348061","estado":"PAUSED","gasto":80404,"roas_meta":null,"ctr":2.98,"cpm":12397,"frecuencia":1.55,"pedidos_shopify":0,"despachados":0,"tasa_despacho":null,"cpa_real":null,"pct_publicidad":null,"conjuntos":[{"nombre":"CA 3 AV PRES RP","roas":null,"gasto":31189,"ctr":3.16,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null},{"nombre":"CA 1 AV CTA RP","roas":null,"gasto":27652,"ctr":2.72,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null},{"nombre":"CA 2 AV CARR RP","roas":null,"gasto":21563,"ctr":3.13,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null}],"anuncio_ganador":null},{"nombre":"CAMP VENT PROBI 06/07","id":"52566505891861","estado":"PAUSED","gasto":11134,"roas_meta":null,"ctr":1.82,"cpm":20281,"frecuencia":1.07,"pedidos_shopify":0,"despachados":0,"tasa_despacho":null,"cpa_real":null,"pct_publicidad":null,"conjuntos":[{"nombre":"C1 AV PROBI","roas":null,"gasto":6057,"ctr":2.26,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null},{"nombre":"C2 AV PROBI","roas":null,"gasto":5077,"ctr":0.66,"estado":"CAMPAIGN_PAUSED","pedidos":0,"cpa":null}],"anuncio_ganador":null}],"anuncio_ganador":{"nombre":"C5 AV C2","conjunto":"C5 AV S-MNM","campania":"CAMP VENT S-NMN 25/06","angulo":"NMN","roas":8.51,"gasto":19869,"cpm":43958,"ctr":6.42,"cpa":19869},"top_productos":[{"nombre":"NMN NAD+ Support","pedidos":14,"unidades":26,"ventas":1708650},{"nombre":"WellFresh","pedidos":9,"unidades":9,"ventas":735500}],"transportadoras":[{"nombre":"ENVIA","efectividad":100,"flete_promedio":16940,"tiempo_entrega":1.3},{"nombre":"INTERRAPIDISIMO","efectividad":0,"flete_promedio":24145,"tiempo_entrega":0},{"nombre":"VELOCES","efectividad":0,"flete_promedio":9950,"tiempo_entrega":0}],"financiero":{"inversion_meta":875583,"valor_despachado":1856650,"prepago_confirmado":497650,"cogs_por_producto":null,"flete_promedio":16940,"comision_dropi_pct":3,"comision_pasarela_pct":3.5,"comision_pasarela_valor":17418,"flete_estimado_despachados":271040,"cod_entregados_dropi":null,"ingreso_bruto":null,"ganancia":null,"nota":"Ganancia NO calculable: faltan COGS por producto y confirmacion de entregados COD en Dropi (sin conector)."},"semana_anterior":{"gasto":541691,"pedidos":21,"roas":3.61,"cpa":25795,"ventas":2215650},"saldo_dropi":196707,"alertas":[{"tipo":"critica","texto":"CUENTA APAGADA: las 5 campanas en PAUSED. Gasto ayer 14/jul $0, cero pedidos. Ultimo pedido 11/jul."},{"tipo":"critica","texto":"$365.743 gastados el 12-13/jul con CERO pedidos en Shopify. Revisar checkout/pixel de esos dias."},{"tipo":"reactivar","texto":"S-NMN 25/06 pausada con ROAS 3,02 y CPA real $30.548 - reactivar con conjuntos C6 (3,47) y C2 (2,51)."},{"tipo":"reactivar","texto":"Anuncio C5 AV C2: ROAS 8,51 con solo $19.869 gastados, pausado a nivel anuncio y conjunto. Mejor ROAS de la cuenta."},{"tipo":"reactivar","texto":"WELL 09/07 pausada con ROAS 2,75 - reactivar solo conjunto CA 1 AV M-ALIENTO (ROAS 5,00, angulo Mal aliento)."},{"tipo":"alerta","texto":"WELL 09/07: tasa de despacho 33% (3 de 9). Por debajo del 50%. Arreglar despacho antes de escalar."},{"tipo":"alerta","texto":"Clara Rodriguez: 3 pedidos identicos #1059-1061 ($83.500 c/u, 11/jul 12:40-12:42), los 3 sin despachar. Riesgo ~$34k en fletes."},{"tipo":"alerta","texto":"Conjunto CA 2 AV C-PERSONAL: ROAS 0,82 con $96.104 gastados - perdiendo dinero."},{"tipo":"alerta","texto":"$269.698 quemados en S-NMN 11/07, R-PRES 12/07 y PROBI 06/07 sin una sola compra atribuida."},{"tipo":"alerta","texto":"3 anuncios de R-PRES 12/07 estan DISAPPROVED (CA1 C2 CTA-BI-NEG, CA1 C3 CTA-BI-BLA, CA1 C3 CARR-BI-NEGRO - 2)."},{"tipo":"info","texto":"Semana cayo vs anterior: ROAS 3,61 -> 2,03, CPA real $25.795 -> $38.069, pedidos 21 -> 23 con +62% de gasto."},{"tipo":"info","texto":"Falta cruce Dropi y COGS: la ganancia real no se puede calcular este run."}],"campanias_diario":[{"id":"52554205436661","nombre":"CAMP JUNIO (producto anterior)","dias":[{"fecha":"2026-06-22","pedidos":2,"ventas":349000,"despachados":2,"prepago":0},{"fecha":"2026-06-23","pedidos":1,"ventas":150000,"despachados":1,"prepago":0},{"fecha":"2026-06-25","pedidos":1,"ventas":110000,"despachados":0,"prepago":0},{"fecha":"2026-06-26","pedidos":2,"ventas":264500,"despachados":1,"prepago":0}]},{"id":"52559512181861","nombre":"CAMP VENT S-NMN 25/06","dias":[{"fecha":"2026-06-26","pedidos":3,"ventas":399500,"despachados":3,"prepago":0},{"fecha":"2026-06-27","pedidos":5,"ventas":579000,"despachados":4,"prepago":0},{"fecha":"2026-06-28","pedidos":1,"ventas":125000,"despachados":1,"prepago":0},{"fecha":"2026-06-30","pedidos":1,"ventas":125000,"despachados":1,"prepago":0},{"fecha":"2026-07-01","pedidos":1,"ventas":79000,"despachados":1,"prepago":0},{"fecha":"2026-07-02","pedidos":4,"ventas":408000,"despachados":1,"prepago":0},{"fecha":"2026-07-03","pedidos":3,"ventas":357000,"despachados":3,"prepago":0},{"fecha":"2026-07-04","pedidos":4,"ventas":456000,"despachados":4,"prepago":0},{"fecha":"2026-07-06","pedidos":2,"ventas":218000,"despachados":2,"prepago":0},{"fecha":"2026-07-07","pedidos":6,"ventas":598650,"despachados":6,"prepago":2},{"fecha":"2026-07-08","pedidos":4,"ventas":511550,"despachados":3,"prepago":1},{"fecha":"2026-07-09","pedidos":4,"ventas":429550,"despachados":4,"prepago":2},{"fecha":"2026-07-10","pedidos":5,"ventas":638550,"despachados":5,"prepago":1},{"fecha":"2026-07-11","pedidos":1,"ventas":129000,"despachados":1,"prepago":0}]},{"id":"52567619618861","nombre":"CAMP VENT WELL 09/07","dias":[{"fecha":"2026-07-10","pedidos":2,"ventas":169000,"despachados":0,"prepago":0},{"fecha":"2026-07-11","pedidos":7,"ventas":566500,"despachados":3,"prepago":1}]}]}
+{
+  "fecha": "13 jul 2026",
+  "ultima_actualizacion": "14/07/2026 (Meta restaurado — histórico real jun-jul)",
+  "meta": {
+    "ayer": {
+      "gasto": 89220,
+      "cpm": 23616,
+      "ctr": 3.65,
+      "frecuencia": null,
+      "roas": null,
+      "impresiones": 3778,
+      "clics": 138,
+      "pedidos_pixel": 0,
+      "cpa": null
+    },
+    "tres_dias": {
+      "gasto": 526984,
+      "cpm": 20296,
+      "ctr": 3.79,
+      "frecuencia": null,
+      "roas": 1.32,
+      "impresiones": 25965,
+      "clics": 984,
+      "pedidos_pixel": 8,
+      "cpa": 65873
+    },
+    "siete_dias": {
+      "gasto": 980520,
+      "cpm": 22253,
+      "ctr": 4.09,
+      "frecuencia": null,
+      "roas": 3.1,
+      "impresiones": 44062,
+      "clics": 1800,
+      "pedidos_pixel": 29,
+      "cpa": 33811
+    }
+  },
+  "tendencia_diaria": [
+    {
+      "dia": "Jun 6",
+      "fecha": "2026-06-06",
+      "gasto": null,
+      "impresiones": null,
+      "clics": null,
+      "roas_meta": null,
+      "pedidos": 1,
+      "ventas": 96900,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 8",
+      "fecha": "2026-06-08",
+      "gasto": 165,
+      "impresiones": 27,
+      "clics": 3,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 10",
+      "fecha": "2026-06-10",
+      "gasto": 29769,
+      "impresiones": 1738,
+      "clics": 65,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 11",
+      "fecha": "2026-06-11",
+      "gasto": 70648,
+      "impresiones": 4351,
+      "clics": 81,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 16",
+      "fecha": "2026-06-16",
+      "gasto": 70971,
+      "impresiones": 4605,
+      "clics": 127,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 17",
+      "fecha": "2026-06-17",
+      "gasto": 48797,
+      "impresiones": 2864,
+      "clics": 70,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 18",
+      "fecha": "2026-06-18",
+      "gasto": 17463,
+      "impresiones": 1287,
+      "clics": 38,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 19",
+      "fecha": "2026-06-19",
+      "gasto": 3919,
+      "impresiones": 210,
+      "clics": 12,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 20",
+      "fecha": "2026-06-20",
+      "gasto": 23600,
+      "impresiones": 1173,
+      "clics": 18,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 21",
+      "fecha": "2026-06-21",
+      "gasto": 30892,
+      "impresiones": 1874,
+      "clics": 19,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 22",
+      "fecha": "2026-06-22",
+      "gasto": 32267,
+      "impresiones": 2126,
+      "clics": 37,
+      "roas_meta": 10.82,
+      "pedidos": 2,
+      "ventas": 349000,
+      "despachados": 2,
+      "valor_despachados": 349000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 10.82
+    },
+    {
+      "dia": "Jun 23",
+      "fecha": "2026-06-23",
+      "gasto": 43956,
+      "impresiones": 2570,
+      "clics": 61,
+      "roas_meta": 3.41,
+      "pedidos": 1,
+      "ventas": 150000,
+      "despachados": 1,
+      "valor_despachados": 150000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 3.41
+    },
+    {
+      "dia": "Jun 24",
+      "fecha": "2026-06-24",
+      "gasto": 42775,
+      "impresiones": 2693,
+      "clics": 34,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 25",
+      "fecha": "2026-06-25",
+      "gasto": 43872,
+      "impresiones": 2492,
+      "clics": 49,
+      "roas_meta": 5.93,
+      "pedidos": 1,
+      "ventas": 110000,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 2.51
+    },
+    {
+      "dia": "Jun 26",
+      "fecha": "2026-06-26",
+      "gasto": 79830,
+      "impresiones": 4224,
+      "clics": 107,
+      "roas_meta": 12.13,
+      "pedidos": 5,
+      "ventas": 664000,
+      "despachados": 4,
+      "valor_despachados": 514000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 8.32
+    },
+    {
+      "dia": "Jun 27",
+      "fecha": "2026-06-27",
+      "gasto": 62267,
+      "impresiones": 2562,
+      "clics": 73,
+      "roas_meta": 2.01,
+      "pedidos": 5,
+      "ventas": 579000,
+      "despachados": 4,
+      "valor_despachados": 500000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 9.3
+    },
+    {
+      "dia": "Jun 28",
+      "fecha": "2026-06-28",
+      "gasto": 71736,
+      "impresiones": 2757,
+      "clics": 123,
+      "roas_meta": 1.74,
+      "pedidos": 1,
+      "ventas": 125000,
+      "despachados": 1,
+      "valor_despachados": 125000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 1.74
+    },
+    {
+      "dia": "Jun 29",
+      "fecha": "2026-06-29",
+      "gasto": 48962,
+      "impresiones": 2123,
+      "clics": 110,
+      "roas_meta": 2.55,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jun 30",
+      "fecha": "2026-06-30",
+      "gasto": 34664,
+      "impresiones": 1347,
+      "clics": 76,
+      "roas_meta": null,
+      "pedidos": 1,
+      "ventas": 125000,
+      "despachados": 1,
+      "valor_despachados": 125000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 3.61
+    },
+    {
+      "dia": "Jul 1",
+      "fecha": "2026-07-01",
+      "gasto": 32760,
+      "impresiones": 1142,
+      "clics": 63,
+      "roas_meta": 6.23,
+      "pedidos": 1,
+      "ventas": 79000,
+      "despachados": 1,
+      "valor_despachados": 79000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 2.41
+    },
+    {
+      "dia": "Jul 2",
+      "fecha": "2026-07-02",
+      "gasto": 70496,
+      "impresiones": 2847,
+      "clics": 119,
+      "roas_meta": 2.89,
+      "pedidos": 4,
+      "ventas": 408000,
+      "despachados": 1,
+      "valor_despachados": 79000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 5.79
+    },
+    {
+      "dia": "Jul 3",
+      "fecha": "2026-07-03",
+      "gasto": 74994,
+      "impresiones": 2573,
+      "clics": 109,
+      "roas_meta": 4.76,
+      "pedidos": 3,
+      "ventas": 357000,
+      "despachados": 3,
+      "valor_despachados": 357000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 4.76
+    },
+    {
+      "dia": "Jul 4",
+      "fecha": "2026-07-04",
+      "gasto": 79947,
+      "impresiones": 2592,
+      "clics": 129,
+      "roas_meta": 5.7,
+      "pedidos": 4,
+      "ventas": 456000,
+      "despachados": 4,
+      "valor_despachados": 456000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 5.7
+    },
+    {
+      "dia": "Jul 5",
+      "fecha": "2026-07-05",
+      "gasto": 92748,
+      "impresiones": 2984,
+      "clics": 149,
+      "roas_meta": null,
+      "pedidos": 1,
+      "ventas": 99000,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 1.07
+    },
+    {
+      "dia": "Jul 6",
+      "fecha": "2026-07-06",
+      "gasto": 85809,
+      "impresiones": 2639,
+      "clics": 108,
+      "roas_meta": 3.53,
+      "pedidos": 2,
+      "ventas": 218000,
+      "despachados": 2,
+      "valor_despachados": 218000,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": 2.54
+    },
+    {
+      "dia": "Jul 7",
+      "fecha": "2026-07-07",
+      "gasto": 104937,
+      "impresiones": 3544,
+      "clics": 152,
+      "roas_meta": 4.09,
+      "pedidos": 6,
+      "ventas": 598650,
+      "despachados": 6,
+      "valor_despachados": 598650,
+      "prepago": 2,
+      "valor_prepago": 173550,
+      "roas": 5.7
+    },
+    {
+      "dia": "Jul 8",
+      "fecha": "2026-07-08",
+      "gasto": 102131,
+      "impresiones": 3436,
+      "clics": 183,
+      "roas_meta": 4.18,
+      "pedidos": 4,
+      "ventas": 511550,
+      "despachados": 3,
+      "valor_despachados": 422550,
+      "prepago": 1,
+      "valor_prepago": 84550,
+      "roas": 5.01
+    },
+    {
+      "dia": "Jul 9",
+      "fecha": "2026-07-09",
+      "gasto": 128684,
+      "impresiones": 5170,
+      "clics": 234,
+      "roas_meta": 2.39,
+      "pedidos": 4,
+      "ventas": 429550,
+      "despachados": 4,
+      "valor_despachados": 429550,
+      "prepago": 2,
+      "valor_prepago": 211550,
+      "roas": 3.34
+    },
+    {
+      "dia": "Jul 10",
+      "fecha": "2026-07-10",
+      "gasto": 117784,
+      "impresiones": 5947,
+      "clics": 247,
+      "roas_meta": 6.4,
+      "pedidos": 7,
+      "ventas": 807550,
+      "despachados": 5,
+      "valor_despachados": 638550,
+      "prepago": 1,
+      "valor_prepago": 122550,
+      "roas": 6.86
+    },
+    {
+      "dia": "Jul 11",
+      "fecha": "2026-07-11",
+      "gasto": 161241,
+      "impresiones": 7309,
+      "clics": 317,
+      "roas_meta": 1.81,
+      "pedidos": 8,
+      "ventas": 695500,
+      "despachados": 4,
+      "valor_despachados": 366000,
+      "prepago": 1,
+      "valor_prepago": 79000,
+      "roas": 4.31
+    },
+    {
+      "dia": "Jul 12",
+      "fecha": "2026-07-12",
+      "gasto": 276523,
+      "impresiones": 14878,
+      "clics": 529,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 13",
+      "fecha": "2026-07-13",
+      "gasto": 89220,
+      "impresiones": 3778,
+      "clics": 138,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 14",
+      "fecha": "2026-07-14",
+      "gasto": null,
+      "impresiones": null,
+      "clics": null,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    }
+  ],
+  "embudo": {
+    "generados": 29,
+    "despachados": 22,
+    "pendientes_despacho": 7,
+    "prepago_confirmado": 5,
+    "valor_generados": 3092800,
+    "valor_despachados": 2505300,
+    "valor_pendientes": 587500,
+    "valor_prepago": 503200
+  },
+  "campanias": [
+    {
+      "nombre": "CAMP VENT S-NMN 25/06",
+      "id": "52559512181861",
+      "estado": "PAUSED",
+      "gasto": 570076,
+      "roas_meta": 3.55,
+      "ctr": 5.64,
+      "cpm": 29648,
+      "frecuencia": 1.29,
+      "pedidos_shopify": 21,
+      "despachados": 20,
+      "tasa_despacho": 95,
+      "cpa_real": 27146,
+      "pct_publicidad": 22.4,
+      "conjuntos": [
+        {
+          "nombre": "C2 AV S-MNM",
+          "roas": 4.82,
+          "gasto": 151010,
+          "ctr": 5.04,
+          "estado": "PAUSED",
+          "pedidos": 7,
+          "cpa": 21573
+        },
+        {
+          "nombre": "C6 AV S-MNM",
+          "roas": 3.58,
+          "gasto": 205296,
+          "ctr": 5.87,
+          "estado": "PAUSED",
+          "pedidos": 6,
+          "cpa": 34216
+        },
+        {
+          "nombre": "C1 AV S-MNM",
+          "roas": 2.59,
+          "gasto": 118364,
+          "ctr": 6.63,
+          "estado": "PAUSED",
+          "pedidos": 4,
+          "cpa": 29591
+        },
+        {
+          "nombre": "C3 AV S-MNM",
+          "roas": 5.55,
+          "gasto": 15244,
+          "ctr": 4.67,
+          "estado": "PAUSED",
+          "pedidos": 2,
+          "cpa": 7622
+        },
+        {
+          "nombre": "C5 AV S-MNM",
+          "roas": 2.57,
+          "gasto": 65866,
+          "ctr": 4.4,
+          "estado": "PAUSED",
+          "pedidos": 2,
+          "cpa": 32933
+        }
+      ],
+      "anuncio_ganador": null,
+      "historico": {
+        "pedidos_total": 44,
+        "ventas_total": 5053800,
+        "despachados_total": 39,
+        "tasa_despacho_total": 89,
+        "prepago_total": 6,
+        "activa_desde": "2026-06-26",
+        "ultimo_pedido": "2026-07-11"
+      }
+    },
+    {
+      "nombre": "CAMP VENT WELL 09/07",
+      "id": "52567619618861",
+      "estado": "PAUSED",
+      "gasto": 166649,
+      "roas_meta": 2.94,
+      "ctr": 1.97,
+      "cpm": 13773,
+      "frecuencia": 1.36,
+      "pedidos_shopify": 8,
+      "despachados": 2,
+      "tasa_despacho": 25,
+      "cpa_real": 20831,
+      "pct_publicidad": 23.1,
+      "conjuntos": [
+        {
+          "nombre": "CA 1 AV M-ALIENTO",
+          "roas": 5.43,
+          "gasto": 75633,
+          "ctr": 2.13,
+          "estado": "PAUSED",
+          "pedidos": 5,
+          "cpa": 15127
+        },
+        {
+          "nombre": "CA 2 AV C-PERSONAL",
+          "roas": 0.87,
+          "gasto": 91016,
+          "ctr": 1.81,
+          "estado": "PAUSED",
+          "pedidos": 3,
+          "cpa": 30339
+        }
+      ],
+      "anuncio_ganador": {
+        "nombre": "CA 1 - C2",
+        "conjunto": "CA 1 AV M-ALIENTO",
+        "roas": 6.4,
+        "gasto": 64102,
+        "ctr": 2.08
+      },
+      "historico": {
+        "pedidos_total": 9,
+        "ventas_total": 735500,
+        "despachados_total": 3,
+        "tasa_despacho_total": 33,
+        "prepago_total": 1,
+        "activa_desde": "2026-07-10",
+        "ultimo_pedido": "2026-07-11"
+      }
+    },
+    {
+      "nombre": "CAMP VENT R-PRES 12/07",
+      "id": "52568785348061",
+      "estado": "ACTIVE",
+      "gasto": 54641,
+      "roas_meta": null,
+      "ctr": 2.97,
+      "cpm": 11917,
+      "frecuencia": 1.4,
+      "pedidos_shopify": 0,
+      "despachados": 0,
+      "tasa_despacho": 0,
+      "cpa_real": null,
+      "pct_publicidad": null,
+      "conjuntos": [],
+      "anuncio_ganador": null
+    },
+    {
+      "nombre": "CAMP JUNIO (producto anterior)",
+      "id": "52554205436661",
+      "estado": "FINALIZADA",
+      "gasto": null,
+      "roas_meta": null,
+      "ctr": null,
+      "cpm": null,
+      "frecuencia": null,
+      "pedidos_shopify": 6,
+      "despachados": 4,
+      "tasa_despacho": 67,
+      "cpa_real": null,
+      "pct_publicidad": null,
+      "conjuntos": [],
+      "anuncio_ganador": null,
+      "historico": {
+        "pedidos_total": 6,
+        "ventas_total": 873500,
+        "despachados_total": 4,
+        "tasa_despacho_total": 67,
+        "prepago_total": 0,
+        "activa_desde": "2026-06-22",
+        "ultimo_pedido": "2026-06-26"
+      }
+    }
+  ],
+  "anuncio_ganador": {
+    "nombre": "CA 1 - C2",
+    "conjunto": "CA 1 AV M-ALIENTO",
+    "campania": "CAMP VENT WELL",
+    "angulo": "Mal aliento",
+    "roas": 6.4,
+    "gasto": 64102,
+    "cpm": 11805,
+    "ctr": 2.08,
+    "cpa": 12820
+  },
+  "top_productos": [
+    {
+      "nombre": "NMN NAD+ Support",
+      "pedidos": 22,
+      "ventas": 3293000
+    },
+    {
+      "nombre": "WellFresh",
+      "pedidos": 9,
+      "ventas": 722000
+    }
+  ],
+  "transportadoras": [
+    {
+      "nombre": "ENVIA",
+      "efectividad": 100,
+      "flete_promedio": 16940,
+      "tiempo_entrega": 1.3
+    },
+    {
+      "nombre": "INTERRAPIDISIMO",
+      "efectividad": 0,
+      "flete_promedio": 24145,
+      "tiempo_entrega": 0
+    },
+    {
+      "nombre": "VELOCES",
+      "efectividad": 0,
+      "flete_promedio": 9950,
+      "tiempo_entrega": 0
+    }
+  ],
+  "financiero": {
+    "inversion_meta": 976826,
+    "valor_despachado": 2505300,
+    "prepago_confirmado": 503200,
+    "cogs_por_producto": null,
+    "flete_promedio": 16940,
+    "comision_dropi_pct": 3,
+    "comision_pasarela_pct": 3.5
+  },
+  "semana_anterior": {
+    "gasto": 820000,
+    "pedidos": 24,
+    "roas": 2.3,
+    "cpa": 34167
+  },
+  "saldo_dropi": 196707,
+  "alertas": [
+    {
+      "tipo": "info",
+      "texto": "Cuenta Meta regularizada y con acceso restaurado (14 jul). Campañas siguen pausadas — decidir reactivación de S-NMN (C2/C3 con creativos nuevos)."
+    },
+    {
+      "tipo": "alerta",
+      "texto": "Clara Rodríguez: 3 pedidos idénticos activos (#1059-1061, $83.500 c/u) — verificar con cliente antes de despachar, riesgo de ~$34k en fletes perdidos"
+    },
+    {
+      "tipo": "reactivar",
+      "texto": "Campaña S-NMN pausada con ROAS 3.55x y CPA $27.146 — reactivar conjunto C2 (CPA $21.573)"
+    },
+    {
+      "tipo": "alerta",
+      "texto": "WellFresh: tasa despacho 25% — CPA real $20.831 pero solo 2 de 8 se despachan"
+    },
+    {
+      "tipo": "info",
+      "texto": "CTR bajando: 4.12% (7d) → 3.56% (ayer) — revisar creativos"
+    },
+    {
+      "tipo": "alerta",
+      "texto": "Conjunto C-PERSONAL: ROAS 0.87x, CPA $30.339 — perdiendo dinero"
+    }
+  ],
+  "campanias_diario": [
+    {
+      "id": "52554205436661",
+      "nombre": "CAMP JUNIO (producto anterior)",
+      "dias": [
+        {
+          "fecha": "2026-06-22",
+          "pedidos": 2,
+          "ventas": 349000,
+          "despachados": 2,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-06-23",
+          "pedidos": 1,
+          "ventas": 150000,
+          "despachados": 1,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-06-25",
+          "pedidos": 1,
+          "ventas": 110000,
+          "despachados": 0,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-06-26",
+          "pedidos": 2,
+          "ventas": 264500,
+          "despachados": 1,
+          "prepago": 0
+        }
+      ]
+    },
+    {
+      "id": "52559512181861",
+      "nombre": "CAMP VENT S-NMN 25/06",
+      "dias": [
+        {
+          "fecha": "2026-06-26",
+          "pedidos": 3,
+          "ventas": 399500,
+          "despachados": 3,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-06-27",
+          "pedidos": 5,
+          "ventas": 579000,
+          "despachados": 4,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-06-28",
+          "pedidos": 1,
+          "ventas": 125000,
+          "despachados": 1,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-06-30",
+          "pedidos": 1,
+          "ventas": 125000,
+          "despachados": 1,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-07-01",
+          "pedidos": 1,
+          "ventas": 79000,
+          "despachados": 1,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-07-02",
+          "pedidos": 4,
+          "ventas": 408000,
+          "despachados": 1,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-07-03",
+          "pedidos": 3,
+          "ventas": 357000,
+          "despachados": 3,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-07-04",
+          "pedidos": 4,
+          "ventas": 456000,
+          "despachados": 4,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-07-06",
+          "pedidos": 2,
+          "ventas": 218000,
+          "despachados": 2,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-07-07",
+          "pedidos": 6,
+          "ventas": 598650,
+          "despachados": 6,
+          "prepago": 2
+        },
+        {
+          "fecha": "2026-07-08",
+          "pedidos": 4,
+          "ventas": 511550,
+          "despachados": 3,
+          "prepago": 1
+        },
+        {
+          "fecha": "2026-07-09",
+          "pedidos": 4,
+          "ventas": 429550,
+          "despachados": 4,
+          "prepago": 2
+        },
+        {
+          "fecha": "2026-07-10",
+          "pedidos": 5,
+          "ventas": 638550,
+          "despachados": 5,
+          "prepago": 1
+        },
+        {
+          "fecha": "2026-07-11",
+          "pedidos": 1,
+          "ventas": 129000,
+          "despachados": 1,
+          "prepago": 0
+        }
+      ]
+    },
+    {
+      "id": "52567619618861",
+      "nombre": "CAMP VENT WELL 09/07",
+      "dias": [
+        {
+          "fecha": "2026-07-10",
+          "pedidos": 2,
+          "ventas": 169000,
+          "despachados": 0,
+          "prepago": 0
+        },
+        {
+          "fecha": "2026-07-11",
+          "pedidos": 7,
+          "ventas": 566500,
+          "despachados": 3,
+          "prepago": 1
+        }
+      ]
+    }
+  ]
+}
