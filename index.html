@@ -373,6 +373,8 @@ function renderAll(filteredTrend){
     <tr><td>Gasto Meta</td><td class="n" colspan="3">${fGasto!=null?fmt(fGasto)+(gastoParcial?' ⚠ '+diasConGasto+'/'+td.length+' días':''):'N/D — Meta sin acceso'}</td></tr>
     <tr><td>Ventas Shopify</td><td class="n" colspan="3">${fmt(fVentas)}</td></tr>
     <tr><td>Pedidos</td><td class="n" colspan="3">${fPedidos}</td></tr>
+    <tr><td>CPM</td><td class="n" colspan="3">${(()=>{const imp=td.reduce((s,d)=>s+(d.impresiones||0),0);return imp>0&&fGasto?fmt(Math.round(fGasto/imp*1000)):'N/D'})()}</td></tr>
+    <tr><td>CTR</td><td class="n" colspan="3">${(()=>{const imp=td.reduce((s,d)=>s+(d.impresiones||0),0);const cl=td.reduce((s,d)=>s+(d.clics||0),0);return imp>0?(cl/imp*100).toFixed(2)+'%':'N/D'})()}</td></tr>
     <tr><td>ROAS real</td><td class="n" colspan="3">${fRoas?fRoas.toFixed(2)+'x':'N/D'}</td></tr>
     <tr><td>CPA real</td><td class="n" colspan="3">${fCpa?fmt(fCpa):'N/D'}</td></tr>
     <tr><td>% Publicidad</td><td class="n" colspan="3">${fPctPub?fPctPub.toFixed(1)+'%':'N/D'}</td></tr>
