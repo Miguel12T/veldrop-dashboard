@@ -345,7 +345,8 @@ function renderAll(filteredTrend){
     <div class="card c-purple"><div class="card-label">Saldo Dropi</div><div class="card-value">${fmt(D.saldo_dropi)}</div></div>
     <div class="card"><div class="card-label">Ticket promedio</div><div class="card-value">${fTicket?fmt(fTicket):'—'}</div></div>
     <div class="card c-red"><div class="card-label">CPA real ${label}</div><div class="card-value">${fCpa?fmt(fCpa):'N/D'}</div><div class="card-change ${cpaChg.c}">${cpaChg.t} vs ant.</div></div>
-    <div class="card"><div class="card-label">% Publicidad ${label}</div><div class="card-value">${fPctPub?fPctPub.toFixed(1)+'%':'N/D'}</div><div class="card-change neutral">gasto / ventas</div></div>`;
+    <div class="card"><div class="card-label">% Publicidad ${label}</div><div class="card-value">${fPctPub?fPctPub.toFixed(1)+'%':'N/D'}</div><div class="card-change neutral">gasto / ventas</div></div>
+    ${D.releasit?(()=>{const r=D.releasit;const pctR=Math.round(r.usados_mes/r.limite_mensual*100);const cls=pctR>=90?'c-red':pctR>=75?'c-amber':'c-green';return `<div class="card ${cls}" style="grid-column:1/-1"><div class="card-label">Límite Releasit (${r.mes})</div><div class="card-value">${r.usados_mes} / ${r.limite_mensual} <span style="font-size:13px;color:var(--text2)">pedidos (${pctR}%)</span></div><div class="card-change ${pctR>=75?'down':'neutral'}">${pctR>=90?'🔴 CRÍTICO: al llegar al límite los pedidos se rechazan en silencio':pctR>=75?'⚠ Acercándose al límite — considerar ampliar':'Margen disponible: '+(r.limite_mensual-r.usados_mes)+' pedidos'}</div></div>`})():''}`;
 
   // Funnel
   const maxF=e.generados||1;
