@@ -1,6 +1,6 @@
 {
   "fecha": "13 jul 2026",
-  "ultima_actualizacion": "14/07/2026 (Meta restaurado — histórico real jun-jul)",
+  "ultima_actualizacion": "16/07/2026 (reactivación + monitoreo Releasit)",
   "meta": {
     "ayer": {
       "gasto": 89220,
@@ -531,6 +531,36 @@
       "prepago": 0,
       "valor_prepago": 0,
       "roas": null
+    },
+    {
+      "dia": "Jul 15",
+      "fecha": "2026-07-15",
+      "gasto": null,
+      "impresiones": null,
+      "clics": null,
+      "roas_meta": null,
+      "pedidos": 0,
+      "ventas": 0,
+      "despachados": 0,
+      "valor_despachados": 0,
+      "prepago": 0,
+      "valor_prepago": 0,
+      "roas": null
+    },
+    {
+      "dia": "Jul 16",
+      "fecha": "2026-07-16",
+      "gasto": null,
+      "impresiones": null,
+      "clics": null,
+      "roas_meta": null,
+      "pedidos": 4,
+      "ventas": 680750,
+      "despachados": 2,
+      "valor_despachados": 267750,
+      "prepago": 1,
+      "valor_prepago": 132750,
+      "roas": null
     }
   ],
   "embudo": {
@@ -547,7 +577,7 @@
     {
       "nombre": "CAMP VENT S-NMN 25/06",
       "id": "52559512181861",
-      "estado": "PAUSED",
+      "estado": "ACTIVE",
       "gasto": 570076,
       "roas_meta": 3.55,
       "ctr": 5.64,
@@ -773,7 +803,11 @@
   "alertas": [
     {
       "tipo": "info",
-      "texto": "Cuenta Meta regularizada y con acceso restaurado (14 jul). Campañas siguen pausadas — decidir reactivación de S-NMN (C2/C3 con creativos nuevos)."
+      "texto": "S-NMN reactivada con creativos nuevos (16 jul) — 2 ventas el primer día. Límite Releasit ampliado a 120/mes."
+    },
+    {
+      "tipo": "alerta",
+      "texto": "Pedidos #1063 y #1064: misma dirección en Neiva (Calle 72A #4-51), nombres/teléfonos distintos, sin UTM, 1am — confirmar antes de despachar ambos."
     },
     {
       "tipo": "alerta",
@@ -932,6 +966,13 @@
           "ventas": 129000,
           "despachados": 1,
           "prepago": 0
+        },
+        {
+          "fecha": "2026-07-16",
+          "pedidos": 2,
+          "ventas": 267750,
+          "despachados": 2,
+          "prepago": 1
         }
       ]
     },
@@ -955,5 +996,10 @@
         }
       ]
     }
-  ]
+  ],
+  "releasit": {
+    "limite_mensual": 120,
+    "usados_mes": 48,
+    "mes": "julio"
+  }
 }
